@@ -25,10 +25,10 @@ dns:
   upstream_dns:
     - https://dns10.quad9.net/dns-query
     - tls://dns2.digitalcourage.de
-    - "[//]192.168.178.1"
-    - "[/fritz.box/]192.168.178.1"
-    - "[/in-addr.arpa/]192.168.178.1"
-    - "[/ip6.arpa/]192.168.178.1"
+    - '[//]10.4.20.1'
+    - '[/fritz.box/]10.4.20.1'
+    - '[/in-addr.arpa/]10.4.20.1'
+    - '[/ip6.arpa/]10.4.20.1'
   upstream_dns_file: ""
   bootstrap_dns:
     - 9.9.9.10
@@ -67,7 +67,7 @@ dns:
   private_networks: []
   use_private_ptr_resolvers: true
   local_ptr_upstreams:
-    - 192.168.178.1
+    - 10.4.20.1
   use_dns64: false
   dns64_prefixes: []
   serve_http3: false
@@ -144,13 +144,14 @@ filters:
     id: 1699899904
 whitelist_filters: []
 user_rules:
-  - "@@||jobs.ebayclassifiedsgroup.com^$important"
+  - '@@||jobs.ebayclassifiedsgroup.com^$important'
   - /^(.*\.)?playstation\.(com|net|org)/
   - /^(.*\.)?scea\.com/
   - /^(.*\.)?sonyentertainmentnetwork\.com/
   - /^(.*\.)?nintendo\.(net|at|be|ch|co.jp|co.kr|co.nz|co.uk|co.za|com|com.au|com.hk|cz|de|dk|es|fi|fr|gr|hu|it|jp|nl|no|pt|ru|se|tw)/
   - /^(.*\.)?nintendo-europe\.com/
   - /^(.*\.)?nintendoswitch\.(cn|com|com.cn)/
+  - '@@||s.youtube.com'
 dhcp:
   enabled: false
   interface_name: ""
@@ -180,6 +181,7 @@ filtering:
     enabled: false
     bing: true
     duckduckgo: true
+    ecosia: true
     google: true
     pixabay: true
     yandex: true
@@ -192,6 +194,8 @@ filtering:
     - domain: '{{ rewrite.domain }}'
       answer: {{ rewrite.answer }}
 {% endfor %}
+  safe_fs_patterns:
+    - /opt/adguardhome/work/data/userfilters/*
   safebrowsing_cache_size: 1048576
   safesearch_cache_size: 1048576
   parental_cache_size: 1048576
@@ -211,6 +215,7 @@ clients:
     hosts: true
   persistent: []
 log:
+  enabled: true
   file: ""
   max_backups: 0
   max_size: 100
@@ -222,4 +227,4 @@ os:
   group: ""
   user: ""
   rlimit_nofile: 0
-schema_version: 28
+schema_version: 29
