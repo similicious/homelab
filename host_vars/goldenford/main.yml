@@ -70,7 +70,7 @@ traefik_dynamic_file_content: |
       proxmox:
         loadBalancer:
           servers:
-            - url: "https://192.168.178.60:8006"
+            - url: "https://10.4.20.60:8006"
 
 # role: portainer
 portainer_config_dir: "{{ docker_container_data_root }}/portainer"
@@ -103,7 +103,7 @@ adguard_rewrites:
 # githubixx.ansible_role_wireguard
 wireguard_address: "10.10.0.1/24"
 wireguard_endpoint: "jellyfin.{{ public_domain }}"
-wireguard_allowed_ips: "10.10.0.1/32, 192.168.178.0/24"
+wireguard_allowed_ips: "10.10.0.1/32, 10.4.20.0/24"
 
 # role: watchtwoer
 watchtower_mount_auth: true
