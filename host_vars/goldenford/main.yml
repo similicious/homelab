@@ -96,9 +96,9 @@ transmission_download_dir: "{{ storage_media_dir }}/downloads/torrent"
 # role: adguard
 adguard_rewrites:
   - domain: "{{ vault_public_domain }}"
-    answer: "192.168.178.60"
+    answer: "10.4.20.60"
   - domain: "*.{{ vault_public_domain }}"
-    answer: "192.168.178.60"
+    answer: "10.4.20.60"
 
 # githubixx.ansible_role_wireguard
 wireguard_address: "10.10.0.1/24"
