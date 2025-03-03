@@ -6,8 +6,8 @@
     volumes:
       - "{{ scanservjs_dir }}:/var/lib/scanservjs/output"
     env:
-      DEVICES: "net:192.168.178.140:airscan:w0:Brother DCP-7055W"
-      SANED_NET_HOSTS: "192.168.178.140"
+      DEVICES: "net:10.4.20.107:airscan:w0:Brother DCP-7055W"
+      SANED_NET_HOSTS: "10.4.20.107"
     restart_policy: unless-stopped
     labels:
       traefik.enable: "true"
