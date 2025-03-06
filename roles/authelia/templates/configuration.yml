@@ -1,7 +1,7 @@
 ---
 identity_validation:
   reset_password:
-    jwt_secret: yKoJddqzKVY2zvmVBAtiKYFSyqgq3cYo9y4uZDMg5az3mjzLcYVJnWH75vqjzDzQ
+    jwt_secret: "{{ vault_authelia_jwt_secret }}"
 
 server:
   address: "0.0.0.0:9091"
@@ -34,7 +34,7 @@ access_control:
         - '^\/scene\/\d+\/stream'
 
 session:
-  secret: j97PjFn8LczPfq4HKMrckR3WzsgZPYhaD92Q3hzE7Es5wUmG8csEucE8cHTWLMMV
+  secret: "{{ vault_authelia_session_secret }}"
   name: authelia_session
 
   cookies:
