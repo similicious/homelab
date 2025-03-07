@@ -10,7 +10,7 @@
     restart_policy: unless-stopped
     labels:
       traefik.enable: "true"
-      traefik.http.routers.syncthing.rule: "Host(`syncthing.{{ public_domain }}`)"
+      traefik.http.routers.syncthing.rule: "Host(`syncthing.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
       traefik.http.services.syncthing.loadbalancer.server.port: "8384"
     env:
       TZ: Europe/Berlin
@@ -22,7 +22,3 @@
       - 21027:21027/udp
     networks:
       - name: "{{ traefik_network_name }}"
-    log_driver: "local"
-    log_options:
-      max-size: "50m"
-      max-file: "10"
