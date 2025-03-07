@@ -1,7 +1,7 @@
 ---
 identity_validation:
   reset_password:
-    jwt_secret: "{{ vault_authelia_jwt_secret }}"
+    jwt_secret: "{{ vault_authelia_identity_validation_reset_password_jwt_secret }}"
 
 server:
   address: "0.0.0.0:9091"
@@ -52,7 +52,7 @@ regulation:
   ban_time: 300
 
 storage:
-  encryption_key: i3M8CoSKw2axy9Q7GL74jTHCu3yY5XdKDJLrmxSxM5YDwE6qs5z8k7qTCmzLD4zx
+  encryption_key: "{{ vault_authelia_storage_encryption_key }}"
   local:
     path: /config/db.sqlite3
 
@@ -60,28 +60,83 @@ notifier:
   disable_startup_check: false
   filesystem:
     filename: /config/notification.txt
-# identity_providers:
-#   oidc:
-#     hmac_secret:
-#     issuer_certificate_chain:
-#     issuer_private_key:
-#     access_token_lifespan: 1h
-#     authorize_code_lifespan: 1m
-#     id_token_lifespan: 1h
-#     refresh_token_lifespan: 90m
-#     enable_client_debug_messages: false
-#     enforce_pkce: public_clients_only
-#     clients:
-#       - id: grafana
-#         description: Grafana
-#         secret: "$argon2id$v=19$m=65536,t=3,p=4$l19OIyaEZjwj1MQfMSJqyA$4oN554Y96IVyXPJxNz9hDZ/+hUb3i1XAMZfzcwePovU"
-#         public: false
-#         authorization_policy: two_factor
-#         redirect_uris:
-#           - "https://grafana.{{ public_domain }}/login/generic_oauth"
-#         scopes:
-#           - openid
-#           - profile
-#           - groups
-#           - email
-#         userinfo_signing_algorithm: none
+
+identity_providers:
+  oidc:
+    hmac_secret: "{{ vault_authelia_identity_providers_oidc_hmac_secret }}"
+    authorization_policies:
+      admin:
+        default_policy: "deny"
+        rules:
+          - policy: "two_factor"
+            subject: "group:admin"
+    jwks:
+      - algorithm: "RS256"
+        certificate_chain: |
+          {{ vault_authelia_identity_providers_oidc_jwks_0_certificate_chain | indent(10) }}
+        key: |
+          {{ vault_authelia_identity_providers_oidc_jwks_0_key | indent(10) }}
+    clients:
+      - client_id: WfPwIhhhiysG8kWq87mjxspmWBIqs7QdZ2jlVamHyK-ZNEhgQfD9NLZ21KXL5Egjpx7YfV1L
+        client_name: Portainer
+        client_secret: "{{ vault_authelia_identity_providers_oidc_clients_portainer_client_secret_hash }}"
+        redirect_uris:
+          - "https://portainer.{{ public_domain }}"
+        scopes:
+          - "openid"
+          - "profile"
+          - "groups"
+          - "email"
+        token_endpoint_auth_method: client_secret_post
+        authorization_policy: "admin"
+      - client_id: "3AWTOoPVAb1pCCuWsm_LVneQXjLLpoy9DUwB1LRNrk2y2bqGao_Yels~RbDbYcLI90oQrc2U"
+        client_name: "Vikunja"
+        client_secret: "{{ vault_authelia_identity_providers_oidc_clients_vikunja_client_secret_hash }}"
+        redirect_uris:
+          - "https://vikunja.{{ public_domain }}/auth/openid/"
+          - "https://vikunja.{{ public_domain }}/auth/openid/authelia"
+          - "https://vikunja.{{ public_domain }}/api/oidc/authorization"
+        scopes:
+          - "openid"
+          - "email"
+          - "profile"
+        token_endpoint_auth_method: "client_secret_post"
+        authorization_policy: "admin"
+      - client_id: "UfBkDkVyVdJ2a4CLi4P7KmGb3y-szYhMSuorqJzj2Z74d6PJ2Mp503yGIP4Nw._Z-98RVrJ-"
+        client_name: "Proxmox"
+        client_secret: "{{ vault_authelia_identity_providers_oidc_clients_proxmox_client_secret_hash }}"
+        require_pkce: true
+        pkce_challenge_method: "S256"
+        redirect_uris:
+          - "https://proxmox.{{ public_domain }}"
+        scopes:
+          - "openid"
+          - "profile"
+          - "email"
+        authorization_policy: "admin"
+      - client_id: "yJWTAHtl5HUGWiTJWSWqTxGkTskmvRMq.moBTLfdRjImu9hZi_ZQxXK.QIJ~2_SMx00Eoivf"
+        client_name: "Beszel"
+        client_secret: "$pbkdf2-sha512$310000$n4XbLwDHEqbjrxGQQ267/w$YH5e5nPKmRVnIiQ5r6kiDSWXhLzzcC.f8K4bPuwb91IpEj4cSAQxtZjqPnfYc7blP9Fr36U5qj1c4MMcHqvLYg"
+        public: false
+        redirect_uris:
+          - "https://beszel.{{ public_domain }}/api/oauth2-redirect"
+        scopes:
+          - "email"
+          - "groups"
+          - "openid"
+          - "profile"
+        userinfo_signed_response_alg: "none"
+        authorization_policy: "admin"
+      - client_id: "IoJ~hP3w4Y9AnVRCfWvGDoC48djIzBf9JBSw30LdrgsUaGVUy.9o4bwACXtbzmx.DMhu9w1w"
+        client_name: "Open WebUI"
+        client_secret: "{{ vault_authelia_identity_providers_oidc_clients_openwebui_client_secret_hash }}"
+        public: false
+        redirect_uris:
+          - "https://ai.{{ public_domain }}/oauth/oidc/callback"
+        scopes:
+          - "openid"
+          - "profile"
+          - "groups"
+          - "email"
+        userinfo_signed_response_alg: "RS256"
+        authorization_policy: "admin"

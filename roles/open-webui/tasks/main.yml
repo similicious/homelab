@@ -9,6 +9,18 @@
     env:
       WEBUI_AUTH: "true"
       WEBUI_URL: "https://ai.{{ public_domain }}"
+      ENABLE_SIGNUP: "false"
+      ENABLE_OAUTH_SIGNUP: "true"
+      OAUTH_MERGE_ACCOUNTS_BY_EMAIL: "true"
+      OAUTH_CLIENT_ID: "IoJ~hP3w4Y9AnVRCfWvGDoC48djIzBf9JBSw30LdrgsUaGVUy.9o4bwACXtbzmx.DMhu9w1w"
+      OAUTH_CLIENT_SECRET: "{{ vault_authelia_identity_providers_oidc_clients_openwebui_client_secret }}"
+      OPENID_PROVIDER_URL: "https://auth.{{ public_domain }}/.well-known/openid-configuration"
+      OAUTH_PROVIDER_NAME: "Authelia"
+      OAUTH_SCOPES: "openid email profile groups"
+      ENABLE_OAUTH_ROLE_MANAGEMENT: "true"
+      OAUTH_ALLOWED_ROLES: "openwebui,openwebui-admin"
+      OAUTH_ADMIN_ROLES: "openwebui-admin"
+      OAUTH_ROLES_CLAIM: "groups"
     labels:
       traefik.enable: "true"
       traefik.http.routers.openwebui.rule: "Host(`ai.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
