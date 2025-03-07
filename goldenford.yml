@@ -136,3 +136,6 @@
     - role: hibiscus-actual
       tags:
         - hibiscus-actual
+    - role: lldap
+      tags:
+        - lldap

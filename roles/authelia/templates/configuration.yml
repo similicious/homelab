@@ -12,12 +12,23 @@ log:
 totp:
   issuer: "{{ public_domain }}"
 
+# authentication_backend:
+#   file:
+#     path: /config/users_database.yml
+
 authentication_backend:
-  file:
-    path: /config/users_database.yml
+  password_reset:
+    disable: false
+  refresh_interval: 1m
+  ldap:
+    implementation: lldap
+    address: ldap://lldap:3890
+    base_dn: "{{ vault_lldap_base_dn }}"
+    user: "uid=authelia,ou=people,{{ vault_lldap_base_dn }}"
+    password: "{{ vault_authelia_authentication_backend_ldap_password }}"
 
 access_control:
-  default_policy: two_factor
+  default_policy: deny
   rules:
     - domain: "sabnzbd.{{ public_domain }}"
       policy: bypass
@@ -32,6 +43,9 @@ access_control:
       resources:
         - '^\/scene\/\d+\/screenshot\?t=\d+'
         - '^\/scene\/\d+\/stream'
+    - domain: "*.{{ public_domain }}"
+      subject: "group:admin"
+      policy: two_factor
 
 session:
   secret: "{{ vault_authelia_session_secret }}"
