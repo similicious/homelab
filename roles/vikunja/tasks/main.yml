@@ -9,14 +9,24 @@
     - "{{ vikunja_dir }}"
     - "{{ vikunja_data_dir }}"
     - "{{ vikunja_db_dir }}"
+    - "{{ vikunja_config_dir }}"
+
+- name: Ensure the config file is present
+  ansible.builtin.template:
+    src: config.yml
+    dest: "{{ vikunja_config_file }}"
+    owner: "{{ docker_container_puid | int }}"
+    group: "{{ docker_container_pgid | int }}"
+  notify: restart_vikunja
 
 - name: "Ensure {{ service_name }} is running as a docker container"
   community.docker.docker_container:
     name: "{{ service_name }}"
-    image: vikunja/vikunja
+    image: vikunja/vikunja:latest
     volumes:
       - "{{ vikunja_data_dir }}:/app/vikunja/files"
       - "{{ vikunja_db_dir }}:/db"
+      - "{{ vikunja_config_file }}:/etc/vikunja/config.yml"
     restart_policy: unless-stopped
     labels:
       traefik.enable: "true"

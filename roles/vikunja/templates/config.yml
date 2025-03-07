@@ -1,0 +1,10 @@
+auth:
+  openid:
+    enabled: true
+    redirecturl: "https://vikunja.{{ public_domain}}/auth/openid/"
+    providers:
+      - name: "authelia"
+        authurl: "https://auth.{{ public_domain }}"
+        clientid: "3AWTOoPVAb1pCCuWsm_LVneQXjLLpoy9DUwB1LRNrk2y2bqGao_Yels~RbDbYcLI90oQrc2U"
+        clientsecret: "{{ vault_authelia_identity_providers_oidc_clients_vikunja_client_secret }}"
+        scope: "openid profile email"
