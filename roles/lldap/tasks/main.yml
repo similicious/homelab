@@ -1,0 +1,25 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: lldap/lldap:stable
+    volumes:
+      - "{{ lldap_data_dir }}:/data"
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.lldap.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.lldap.loadbalancer.server.port: "17170"
+      traefik.docker.network: "{{ traefik_network_name }}"
+    env:
+      UID: "{{ docker_container_puid | string }}"
+      GID: "{{ docker_container_pgid | string }}"
+      TZ: "Europe/Berlin"
+      LLDAP_JWT_SECRET: "{{ vault_lldap_jwt_secret }}"
+      LLDAP_KEY_SEED: "{{ vault_lldap_key_seed }}"
+      LLDAP_LDAP_BASE_DN: "{{ vault_lldap_base_dn }}"
+      LLDAP_LDAP_USER_PASS: "{{ vault_lldap_user_pass }}"
+    networks:
+      - name: "{{ traefik_network_name }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
