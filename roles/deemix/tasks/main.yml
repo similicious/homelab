@@ -10,6 +10,7 @@
       traefik.enable: "true"
       traefik.http.routers.deemix.rule: "Host(`{{ service_name }}.{{ public_domain }}`)  && {{ traefik_internal_client_ip_v3 }}"
       traefik.http.services.deemix.loadbalancer.server.port: "6595"
+      traefik.http.routers.deemix.middlewares: "authelia@docker"
       traefik.docker.network: "{{ traefik_network_name }}"
     volumes:
       - "{{ deemix_config_dir }}:/config"
