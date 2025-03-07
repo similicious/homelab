@@ -2,6 +2,56 @@
 
 This repository contains the configuration of my homelab, automated with Ansible.
 
+## Services
+
+| Name                | Access    | IAM            | Groups |
+| ------------------- | --------- | -------------- | ------ |
+| 2fauth              | local 🏠  | forwarded-auth |        |
+| actual-budget       | local 🏠  | internal       |        |
+| adguard-home        | local 🏠  | internal       |        |
+| airsonic-refix      | local 🏠  | forwarded-auth |        |
+| audiobookshelf      | public 🌍 | internal       |        |
+| authelia            | public 🌍 | auth provider  |        |
+| bazarr              | local 🏠  | forwarded-auth |        |
+| beets               | local 🏠  | none           |        |
+| beszel              | local 🏠  | oauth          |        |
+| ddns                | local 🏠  | none           |        |
+| deemix              | local 🏠  | forwarded-auth |        |
+| deezer-downloader   | local 🏠  | forwarded-auth |        |
+| filebrowser         | local 🏠  | forwarded-auth |        |
+| hibiscus-server     | local 🏠  | internal       |        |
+| hibiscus-actual     | local 🏠  | none           |        |
+| homeassistant       | local 🏠  | internal       |        |
+| jdownloader2        | local 🏠  | forwarded-auth |        |
+| jellyfin            | public 🌍 | internal       |        |
+| lldap               | local 🏠  | internal       |        |
+| navidrome           | local 🏠  | forwarded-auth |        |
+| nextcloud           | public 🌍 | internal       |        |
+| nextcloud-collabora | public 🌍 | none           |        |
+| open-webui          | local 🏠  | oauth          |        |
+| packlist            | local 🏠  | internal       |        |
+| paperless-ngx       | local 🏠  | forwarded-auth |        |
+| photoprism          | public 🌍 | internal       |        |
+| portainer           | local 🏠  | oauth          |        |
+| prowlarr            | local 🏠  | forwarded-auth |        |
+| radarr              | local 🏠  | forwarded-auth |        |
+| redlib              | local 🏠  | none           |        |
+| rest-server         | local 🏠  | none           |        |
+| sabnzbd             | local 🏠  | forwarded-auth |        |
+| scanservjs          | local 🏠  | none           |        |
+| scrutiny            | local 🏠  | none           |        |
+| searxng             | local 🏠  | none           |        |
+| sonarr              | local 🏠  | forwarded-auth |        |
+| speedtest           | local 🏠  | none           |        |
+| stirling-pdf        | local 🏠  | none           |        |
+| syncthing           | local 🏠  | none           |        |
+| tandoor-recipes     | public 🌍 | internal       |        |
+| traefik             | local 🏠  | forwarded-auth |        |
+| transmission        | local 🏠  | forwarded-auth |        |
+| uptime-kuma         | local 🏠  | internal       |        |
+| vikunja             | public 🌍 | internal       |        |
+| webtop              | local 🏠  | forwarded-auth |        |
+
 ## Prerequisites
 
 Install ansible and the dependencies:
