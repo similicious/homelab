@@ -1,6 +1,6 @@
-# Raspberry-Pi Homeserver
+# Homelab
 
-This repository contains the configuration of my RaspberryPi homeserver, automated with Ansible.
+This repository contains the configuration of my homelab, automated with Ansible.
 
 ## Prerequisites
 
@@ -10,13 +10,6 @@ Install ansible and the dependencies:
 pipx install ansible
 
 ansible-galaxy install -r requirements.yml
-```
-
-## Sleepy
-
-```
-ansible-playbook essentials.yml --limit sleepy -e ansible_port=22 -e ansible_user=root --ask-vault-pass
-ansible-playbook sleepy.yml --ask-vault-pass
 ```
 
 ## Apps
