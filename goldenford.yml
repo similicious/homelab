@@ -139,3 +139,6 @@
     - role: lldap
       tags:
         - lldap
+    - role: kitchenowl
+      tags:
+        - kitchenowl

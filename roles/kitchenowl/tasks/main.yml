@@ -1,0 +1,23 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: tombursch/kitchenowl:latest
+    volumes:
+      - "{{ kitchenowl_data_dir }}:/data"
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.kitchenowl.rule: "Host(`{{ service_name }}.{{ public_domain }}`)"
+      traefik.http.services.kitchenowl.loadbalancer.server.port: "8080"
+    networks:
+      - name: "{{ traefik_network_name }}"
+    env:
+      JWT_SECRET_KEY: "{{ vault_kitchenowl_jwt_secret }}"
+      DISABLE_USERNAME_PASSWORD_LOGIN: "true"
+      FRONT_URL: "https://{{ service_name }}.{{ public_domain }}"
+      OIDC_ISSUER: "https://auth.{{ public_domain }}"
+      OIDC_CLIENT_ID: "nNlYOuyXIo~EcxPabcIF.hRwhUJ-2qKnxhf~ozScnprpGFY"
+      OIDC_CLIENT_SECRET: "{{ vault_authelia_identity_providers_oidc_clients_kitchenowl_client_secret }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
