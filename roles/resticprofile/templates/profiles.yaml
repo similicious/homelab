@@ -64,6 +64,12 @@ base:
       # navidrome
       - /mnt/appdata/docker/navidrome
 
+      # kitchen-owl
+      - /mnt/appdata/docker/kitchenowl
+
+      # audiobookshelf
+      - /mnt/appdata/docker/audiobookshelf
+
     exclude:
       # General
       - node_modules
@@ -95,7 +101,7 @@ default:
     run-after: "curl -fsS -m 10 --retry 5 https://hc-ping.com/{{ vault_resticprofile_healthcheck_id }}"
     run-after-fail: "curl -fsS -m 10 --retry 5 https://hc-ping.com/{{ vault_resticprofile_healthcheck_id }}/fail"
 
-    schedule: "04:00"
+    schedule: "02:00"
     schedule-permission: system
     schedule-lock-wait: 10m
     schedule-log: /mnt/appdata/docker/resticprofile/logs/backup.log
@@ -107,7 +113,7 @@ default:
     keep-monthly: 12
     keep-yearly: 2
     prune: true
-    schedule: "05:00"
+    schedule: "02:45"
     schedule-permission: system
     schedule-lock-wait: 1h
     schedule-log: /mnt/appdata/docker/resticprofile/logs/forget.log
@@ -117,9 +123,9 @@ default:
         url: "https://hc-ping.com/{{ vault_resticprofile_healthcheck_id }}/fail"
 
   check:
-    schedule: "06:00"
+    schedule: "03:00"
     schedule-permission: system
-    read-data-subset: "5%"
+    read-data-subset: "2%"
     schedule-lock-wait: 1h
     schedule-log: /mnt/appdata/docker/resticprofile/logs/check.log
     send-after-fail:
@@ -137,7 +143,7 @@ offsitenas:
     run-after: "curl -fsS -m 10 --retry 5 https://hc-ping.com/{{ vault_resticprofile_healthcheck_id2 }}"
     run-after-fail: "curl -fsS -m 10 --retry 5 https://hc-ping.com/{{ vault_resticprofile_healthcheck_id2 }}/fail"
 
-    schedule: "01:00"
+    schedule: "03:00"
     schedule-permission: system
     schedule-lock-wait: 10m
     schedule-log: /mnt/appdata/docker/resticprofile/logs/backup-offsite.log
@@ -149,7 +155,7 @@ offsitenas:
     keep-monthly: 12
     keep-yearly: 2
     prune: true
-    schedule: "02:00"
+    schedule: "03:45"
     schedule-permission: system
     schedule-lock-wait: 1h
     schedule-log: /mnt/appdata/docker/resticprofile/logs/forget-offsite.log
@@ -159,7 +165,7 @@ offsitenas:
         url: "https://hc-ping.com/{{ vault_resticprofile_healthcheck_id2 }}/fail"
 
   check:
-    schedule: "03:00"
+    schedule: "04:00"
     schedule-permission: system
     read-data-subset: "2%"
     schedule-lock-wait: 1h
@@ -179,37 +185,37 @@ jakob:
     run-after: "curl -fsS -m 10 --retry 5 https://hc-ping.com/{{ vault_resticprofile_healthcheck_id3 }}"
     run-after-fail: "curl -fsS -m 10 --retry 5 https://hc-ping.com/{{ vault_resticprofile_healthcheck_id3 }}/fail"
 
-    # schedule: "03:00"
-    # schedule-permission: system
-    # schedule-lock-wait: 10m
-    # schedule-log: /mnt/appdata/docker/resticprofile/logs/backup-jakob.log
+    schedule: "04:00"
+    schedule-permission: system
+    schedule-lock-wait: 10m
+    schedule-log: /mnt/appdata/docker/resticprofile/logs/backup-jakob.log
 
-  # forget:
-  #   keep-last: 10
-  #   keep-daily: 7
-  #   keep-weekly: 5
-  #   keep-monthly: 12
-  #   keep-yearly: 2
-  #   prune: true
-  #   schedule: "04:00"
-  #   schedule-permission: system
-  #   schedule-lock-wait: 1h
-  #   schedule-log: /mnt/appdata/docker/resticprofile/logs/forget-jakob.log
-  #   send-after-fail:
-  #     - body: "Restic forget failed"
-  #       method: POST
-  #       url: "https://hc-ping.com/{{ vault_resticprofile_healthcheck_id3 }}/fail"
+  forget:
+    keep-last: 10
+    keep-daily: 7
+    keep-weekly: 5
+    keep-monthly: 12
+    keep-yearly: 2
+    prune: true
+    schedule: "04:45"
+    schedule-permission: system
+    schedule-lock-wait: 1h
+    schedule-log: /mnt/appdata/docker/resticprofile/logs/forget-jakob.log
+    send-after-fail:
+      - body: "Restic forget failed"
+        method: POST
+        url: "https://hc-ping.com/{{ vault_resticprofile_healthcheck_id3 }}/fail"
 
-  # check:
-  #   schedule: "05:00"
-  #   schedule-permission: system
-  #   read-data-subset: "2%"
-  #   schedule-lock-wait: 1h
-  #   schedule-log: /mnt/appdata/docker/resticprofile/logs/check-jakob.log
-  #   send-after-fail:
-  #     - body: "Restic check failed"
-  #       method: POST
-  #       url: "https://hc-ping.com/{{ vault_resticprofile_healthcheck_id3 }}/fail"
+  check:
+    schedule: "05:00"
+    schedule-permission: system
+    read-data-subset: "2%"
+    schedule-lock-wait: 1h
+    schedule-log: /mnt/appdata/docker/resticprofile/logs/check-jakob.log
+    send-after-fail:
+      - body: "Restic check failed"
+        method: POST
+        url: "https://hc-ping.com/{{ vault_resticprofile_healthcheck_id3 }}/fail"
 
 # sudo ./bin/resticprofile ext.backup
 ext:
