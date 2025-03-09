@@ -21,6 +21,9 @@ base:
 
       # lldap
       - sqlite3 /mnt/appdata/docker/lldap/users.db ".backup /mnt/appdata/docker/lldap/users.db.bak"
+
+      # vikunja
+      - sqlite3 /mnt/appdata/docker/vikunja/db/vikunja.db ".backup /mnt/appdata/docker/vikunja/db/vikunja.db.bak"
     source:
       # Data
       - /mnt/storage/data
