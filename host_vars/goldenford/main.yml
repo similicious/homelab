@@ -42,6 +42,7 @@ docker_compose_root: "{{ docker_container_data_root }}/compose"
 # role: traefik
 traefik_ssl_certs_dir: "{{ docker_container_data_root }}/traefik/certificates"
 traefik_args: >
+  --log.level=INFO
   --entrypoints.http.http.redirections.entryPoint.to=https
   --entrypoints.http.http.redirections.entryPoint.scheme=https
   --entrypoints.http.http.redirections.entrypoint.permanent=true
@@ -50,12 +51,12 @@ traefik_args: >
   --entrypoints.https.http.tls.domains[0].sans=*.{{ public_domain }}
   --certificatesresolvers.letsencrypt.acme.email={{ vault_email }}
   --certificatesresolvers.letsencrypt.acme.dnschallenge=true
-  --certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers=193.47.99.5:53,213.133.100.98:53
-  --certificatesresolvers.letsencrypt.acme.dnschallenge.delaybeforecheck=10
   --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=hetzner
   --certificatesresolvers.letsencrypt.acme.storage=/ssl-certs/acme.json
 traefik_env:
   HETZNER_API_KEY: "{{ vault_hetzner_api_key }}"
+  LEGO_DISABLE_CNAME_SUPPORT: "true"
+
 traefik_labels:
   traefik.http.routers.api.middlewares: "authelia@docker"
 
