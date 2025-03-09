@@ -46,5 +46,5 @@
 | traefik             | local 🏠     | forwarded-auth | admin                                  |
 | transmission        | local 🏠     | forwarded-auth | admin                                  |
 | uptime-kuma         | local 🏠     | internal       | -                                      |
-| vikunja             | public 🌍    | internal       | -                                      |
+| vikunja             | public 🌍    | oauth          | admin                                  |
 | webtop              | local 🏠     | forwarded-auth | admin                                  |
