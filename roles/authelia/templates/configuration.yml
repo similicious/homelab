@@ -12,10 +12,6 @@ log:
 totp:
   issuer: "{{ public_domain }}"
 
-# authentication_backend:
-#   file:
-#     path: /config/users_database.yml
-
 authentication_backend:
   password_reset:
     disable: false
