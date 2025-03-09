@@ -20,12 +20,6 @@
     dest: "{{ authelia_config_dir }}/configuration.yml"
   notify: restart_authelia
 
-- name: "Ensure the user database for {{ service_name }} is in place"
-  ansible.builtin.template:
-    src: "users_database.yml"
-    dest: "{{ authelia_config_dir }}/users_database.yml"
-  notify: restart_authelia
-
 - name: "Ensure {{ service_name }} is running as a docker container"
   community.docker.docker_compose_v2:
     project_name: "{{ service_name }}"
