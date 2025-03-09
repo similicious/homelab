@@ -192,3 +192,14 @@ identity_providers:
           - "groups"
           - "email"
         authorization_policy: "media"
+      - client_id: "tyEFQG6meV5B.D491unnc_lYGZny5DusRm0UgkpuC"
+        client_name: "Tandoor Recipes"
+        client_secret: "{{ vault_authelia_identity_providers_oidc_clients_recipes_client_secret_hash }}"
+        redirect_uris:
+          - "https://recipes.{{ public_domain }}/accounts/authelia/login/callback/"
+        scopes:
+          - "openid"
+          - "profile"
+          - "groups"
+          - "email"
+        authorization_policy: "home"
