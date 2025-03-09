@@ -72,8 +72,13 @@ storage:
 
 notifier:
   disable_startup_check: false
-  filesystem:
-    filename: /config/notification.txt
+  smtp:
+    address: "submissions://smtp.mailbox.org:465"
+    username: "{{ vault_authelia_notifier_smtp_username }}"
+    password: "{{ vault_authelia_notifier_smtp_password }}"
+    sender: "{{ public_domain }} Account <no-reply@{{ public_domain }}>"
+    subject: "[{{ public_domain }}] {title}"
+    startup_check_address: "no-reply@{{ public_domain }}"
 
 identity_providers:
   oidc:
@@ -175,10 +180,10 @@ identity_providers:
           - email
           - profile
         redirect_uris:
-          - https://kitchenowl.{{ public_domain }}/signin/redirect # Put the same value as FRONT_URL, appended with /signin/redirect
+          - https://kitchenowl.{{ public_domain }}/signin/redirect
           - kitchenowl:///signin/redirect
-        response_modes:
-        userinfo_signing_algorithm: none
+        response_modes: []
+        userinfo_signed_response_alg: none
         token_endpoint_auth_method: client_secret_post
       - client_id: "sQmSPlNkZ4x~qxgaYB85nWCD.NP33em50WexTg23sdf"
         client_name: Audiobookshelf
