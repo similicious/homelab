@@ -19,7 +19,7 @@
 | hibiscus-actual     | local 🏠     | none           | -                                      |
 | homeassistant       | local 🏠     | internal       | -                                      |
 | jdownloader2        | local 🏠     | forwarded-auth | admin                                  |
-| jellyfin            | public 🌍    | internal       | media                                  |
+| jellyfin            | public 🌍    | internal, ldap | admin, media                           |
 | kitchen-owl         | public 🌍    | oauth          | home                                   |
 | lldap               | local 🏠     | internal       | -                                      |
 | navidrome           | local 🏠     | forwarded-auth | admin                                  |
