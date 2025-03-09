@@ -19,6 +19,8 @@ base:
       - docker exec recipes-db pg_dump -U recipes recipes > /mnt/appdata/docker/recipes/backup/recipes.sql
       - docker exec recipes-db pg_dumpall -U recipes --globals-only > /mnt/appdata/docker/recipes/backup/recipes-postgres-globals.sql
 
+      # lldap
+      - sqlite3 /mnt/appdata/docker/lldap/users.db ".backup /mnt/appdata/docker/lldap/users.db.bak"
     source:
       # Data
       - /mnt/storage/data
@@ -69,6 +71,9 @@ base:
 
       # audiobookshelf
       - /mnt/appdata/docker/audiobookshelf
+
+      # lldap
+      - /mnt/appdata/docker/lldap
 
     exclude:
       # General
