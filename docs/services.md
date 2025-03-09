@@ -42,7 +42,7 @@
 | speedtest           | local 🏠     | none           | -                                      |
 | stirling-pdf        | local 🏠     | none           | -                                      |
 | syncthing           | local 🏠     | internal       | -                                      |
-| tandoor-recipes     | public 🌍    | internal       | home                                   |
+| tandoor-recipes     | public 🌍    | oauth          | home                                   |
 | traefik             | local 🏠     | forwarded-auth | admin                                  |
 | transmission        | local 🏠     | forwarded-auth | admin                                  |
 | uptime-kuma         | local 🏠     | internal       | -                                      |
