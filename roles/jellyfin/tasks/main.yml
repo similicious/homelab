@@ -15,6 +15,7 @@
       PUID: "{{ docker_container_puid | string }}"
       PGID: "{{ docker_container_pgid | string }}"
       JELLYFIN_PublishedServerUrl: "https://jellyfin.{{ public_domain }}"
+      DOCKER_MODS: "linuxserver/mods:jellyfin-opencl-intel"
     ports:
       - 7359:7359/udp
       # - 1900:1900/udp
