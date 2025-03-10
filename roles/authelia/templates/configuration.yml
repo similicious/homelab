@@ -82,6 +82,15 @@ identity_providers:
         rules:
           - policy: "two_factor"
             subject: "group:admin"
+      vikunja:
+        default_policy: "deny"
+        rules:
+          - policy: "two_factor"
+            subject:
+              - "group:admin"
+          - policy: "one_factor"
+            subject:
+              - "user:similicious.rebuy"
       home:
         default_policy: "deny"
         rules:
@@ -123,7 +132,7 @@ identity_providers:
           - "email"
           - "profile"
         token_endpoint_auth_method: "client_secret_post"
-        authorization_policy: "admin"
+        authorization_policy: "vikunja"
       - client_id: "UfBkDkVyVdJ2a4CLi4P7KmGb3y-szYhMSuorqJzj2Z74d6PJ2Mp503yGIP4Nw._Z-98RVrJ-"
         client_name: "Proxmox"
         client_secret: "{{ vault_authelia_identity_providers_oidc_clients_proxmox_client_secret_hash }}"
