@@ -26,7 +26,7 @@ base:
       - sqlite3 /mnt/appdata/docker/vikunja/db/vikunja.db ".backup /mnt/appdata/docker/vikunja/db/vikunja.db.bak"
 
       # jellyseerr
-      - sqlite3 /mnt/appdata/docker/jellyseer/db/db.sqlite3 ".backup /mnt/appdata/docker/jellyseer/db/db.sqlite3.bak"
+      - sqlite3 /mnt/appdata/docker/jellyseerr/db/db.sqlite3 ".backup /mnt/appdata/docker/jellyseerr/db/db.sqlite3.bak"
     source:
       # Data
       - /mnt/storage/data
