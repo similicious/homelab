@@ -20,6 +20,7 @@
 | homeassistant       | local 🏠     | internal       | -                                      |
 | jdownloader2        | local 🏠     | forwarded-auth | admin                                  |
 | jellyfin            | public 🌍    | internal, ldap | admin, media                           |
+| jellyseerr          | public 🌍    | via jellyfin   |                                        |
 | kitchen-owl         | public 🌍    | oauth          | home                                   |
 | lldap               | local 🏠     | internal       | -                                      |
 | navidrome           | local 🏠     | forwarded-auth | admin                                  |
