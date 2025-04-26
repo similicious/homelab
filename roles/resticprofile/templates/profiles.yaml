@@ -81,8 +81,8 @@ base:
       # lldap
       - /mnt/appdata/docker/lldap
 
-      # jellyseer
-      - /home/similicious/docker-data/jellyseer
+      # jellyseerr
+      - /mnt/appdata/docker/jellyseerr
 
     exclude:
       # General
