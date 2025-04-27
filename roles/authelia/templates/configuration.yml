@@ -36,6 +36,10 @@ access_control:
       resources:
         - '^\/scene\/\d+\/screenshot\?t=\d+'
         - '^\/scene\/\d+\/stream'
+    - domain: "paperless.{{ public_domain }}"
+      policy: bypass
+      resources:
+        - "^/api.*"
     - domain: "*.{{ public_domain }}"
       subject: "group:admin"
       policy: two_factor
