@@ -11,6 +11,7 @@
 | bazarr              | local 🏠     | forwarded-auth | admin                                  |
 | beets               | local 🏠     | none           | -                                      |
 | beszel              | local 🏠     | oauth          | admin                                  |
+| changedetection     | local 🏠     | forwarded-auth | admin                                  |
 | ddns                | local 🏠     | none           | -                                      |
 | deemix              | local 🏠     | forwarded-auth | admin                                  |
 | deezer-downloader   | local 🏠     | forwarded-auth | admin                                  |
