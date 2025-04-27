@@ -18,8 +18,4 @@ nzb_lidarr_config_dir: "{{ docker_container_data_root }}/lidarr"
 
 nzb_prowlarr_config_dir: "{{ docker_container_data_root }}/prowlarr"
 
-nzb_searcharr_root_dir: "{{ docker_container_data_root }}/searcharr"
-nzb_searcharr_data_dir: "{{ nzb_searcharr_root_dir }}/data"
-nzb_searcharr_logs_dir: "{{ nzb_searcharr_root_dir }}/logs"
-
 nzb_jellyseerr_config_dir: "{{ docker_container_data_root }}/jellyseerr"
