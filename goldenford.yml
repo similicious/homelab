@@ -142,3 +142,6 @@
     - role: kitchenowl
       tags:
         - kitchenowl
+    - role: changedetection
+      tags:
+        - changedetection
