@@ -13,7 +13,6 @@
     - "{{ nzb_bazarr_config_dir }}"
     - "{{ nzb_prowlarr_config_dir }}"
     - "{{ nzb_lidarr_config_dir }}"
-    - "{{ nzb_searcharr_root_dir }}"
 
 - name: Ensure the docker-compose file is present
   ansible.builtin.template:
@@ -27,11 +26,6 @@
     owner: "{{ username }}"
     group: "{{ username }}"
     mode: "744"
-
-- name: Ensure searcharr config is present
-  template:
-    src: settings.py
-    dest: "{{ nzb_searcharr_root_dir }}/settings.py"
 
 - name: "Ensure the {{ service_name }} stack is running"
   community.docker.docker_compose_v2:

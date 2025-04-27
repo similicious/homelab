@@ -105,20 +105,6 @@ services:
       - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
       - "traefik.docker.network={{ traefik_network_name }}"
 
-  searcharr:
-    container_name: searcharr
-    image: toddrob/searcharr
-    restart: unless-stopped
-    # command: python3 searcharr.py -v
-    volumes:
-      - "{{ nzb_searcharr_root_dir }}/settings.py:/app/settings.py"
-      - "{{ nzb_searcharr_data_dir }}:/app/data"
-      - "{{ nzb_searcharr_logs_dir }}:/app/logs"
-    networks:
-      - nzb
-    environment:
-      TZ: Europe/Berlin
-
   jellyseerr:
     image: ghcr.io/fallenbagel/jellyseerr:latest
     container_name: jellyseerr
