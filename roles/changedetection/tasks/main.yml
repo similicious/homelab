@@ -1,0 +1,17 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: ghcr.io/dgtlmoon/changedetection.io
+    hostname: "{{ service_name }}"
+    volumes:
+      - "{{ changedetection_dir }}:/datastore"
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.changedetection.rule: "Host(`changedetection.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.changedetection.loadbalancer.server.port: "5000"
+    networks:
+      - name: "{{ traefik_network_name }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
