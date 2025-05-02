@@ -173,7 +173,7 @@ identity_providers:
           - "profile"
           - "groups"
           - "email"
-        userinfo_signed_response_alg: "RS256"
+        userinfo_signed_response_alg: "none"
         authorization_policy: "admin"
       - client_id: "nNlYOuyXIo~EcxPabcIF.hRwhUJ-2qKnxhf~ozScnprpGFY"
         client_name: KitchenOwl
