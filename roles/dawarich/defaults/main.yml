@@ -1,0 +1,12 @@
+---
+service_name: dawarich
+
+dawarich_compose_file: "{{ docker_compose_root }}/{{ service_name }}/docker-compose.yml"
+
+dawarich_dir: "{{ docker_container_data_root }}/{{ service_name }}"
+
+dawarich_db_dir: "{{ dawarich_dir }}/db"
+dawarich_shared_dir: "{{ dawarich_dir }}/shared"
+dawarich_public_dir: "{{ dawarich_dir }}/public"
+dawarich_watched_dir: "{{ dawarich_dir }}/watched"
+dawarich_storage_dir: "{{ dawarich_dir }}/storage"
