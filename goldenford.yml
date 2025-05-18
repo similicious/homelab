@@ -145,3 +145,6 @@
     - role: changedetection
       tags:
         - changedetection
+    - role: dawarich
+      tags:
+        - dawarich
