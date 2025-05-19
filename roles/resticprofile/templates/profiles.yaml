@@ -27,6 +27,9 @@ base:
 
       # jellyseerr
       - sqlite3 /mnt/appdata/docker/jellyseerr/db/db.sqlite3 ".backup /mnt/appdata/docker/jellyseerr/db/db.sqlite3.bak"
+
+      # dawarich
+      - docker exec -t dawarich-db pg_dumpall --clean --if-exists --username=postgres | gzip --rsyncable > "/mnt/appdata/docker/dawarich/backup/dawarich.sql.gz"
     source:
       # Data
       - /mnt/storage/data
@@ -83,6 +86,9 @@ base:
 
       # jellyseerr
       - /mnt/appdata/docker/jellyseerr
+
+      # dawarich
+      - /mnt/appdata/docker/dawarich/backup
 
     exclude:
       # General
