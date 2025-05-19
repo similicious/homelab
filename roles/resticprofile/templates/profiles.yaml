@@ -108,7 +108,7 @@ base:
       # Docker containers
       - /mnt/appdata/docker/navidrome/cache
 
-# sudo ./bin/resticprofile offsitenas.backup
+# sudo ./bin/resticprofile backup
 default:
   inherit: base
   repository: "rest:http://offsite-nas.van-crocodile.ts.net:8000/simon"
