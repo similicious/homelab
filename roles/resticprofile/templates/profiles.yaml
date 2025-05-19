@@ -102,53 +102,8 @@ base:
       # Docker containers
       - /mnt/appdata/docker/navidrome/cache
 
-default:
-  inherit: base
-  repository: "b2:{{ vault_resticprofile_bucket_name }}:/"
-  password-file: "./password.txt"
-
-  env:
-    B2_ACCOUNT_ID: "{{ vault_resticprofile_account_id }}"
-    B2_ACCOUNT_KEY: "{{ vault_resticprofile_account_key }}"
-
-  backup:
-    run-after: "curl -fsS -m 10 --retry 5 https://hc-ping.com/{{ vault_resticprofile_healthcheck_id }}"
-    run-after-fail: "curl -fsS -m 10 --retry 5 https://hc-ping.com/{{ vault_resticprofile_healthcheck_id }}/fail"
-
-    schedule: "02:00"
-    schedule-permission: system
-    schedule-lock-wait: 10m
-    schedule-log: /mnt/appdata/docker/resticprofile/logs/backup.log
-
-  forget:
-    keep-last: 10
-    keep-daily: 7
-    keep-weekly: 5
-    keep-monthly: 12
-    keep-yearly: 2
-    prune: true
-    schedule: "02:45"
-    schedule-permission: system
-    schedule-lock-wait: 1h
-    schedule-log: /mnt/appdata/docker/resticprofile/logs/forget.log
-    send-after-fail:
-      - body: "Restic forget failed"
-        method: POST
-        url: "https://hc-ping.com/{{ vault_resticprofile_healthcheck_id }}/fail"
-
-  check:
-    schedule: "03:00"
-    schedule-permission: system
-    read-data-subset: "2%"
-    schedule-lock-wait: 1h
-    schedule-log: /mnt/appdata/docker/resticprofile/logs/check.log
-    send-after-fail:
-      - body: "Restic check failed"
-        method: POST
-        url: "https://hc-ping.com/{{ vault_resticprofile_healthcheck_id }}/fail"
-
 # sudo ./bin/resticprofile offsitenas.backup
-offsitenas:
+default:
   inherit: base
   repository: "rest:http://offsite-nas.van-crocodile.ts.net:8000/simon"
   password-file: "./password.txt"
