@@ -12,6 +12,7 @@
 | beets               | local 🏠     | none           | -                                      |
 | beszel              | local 🏠     | oauth          | admin                                  |
 | changedetection     | local 🏠     | forwarded-auth | admin                                  |
+| dawarich            | local 🏠     | internal       | -                                      |
 | ddns                | local 🏠     | none           | -                                      |
 | deemix              | local 🏠     | forwarded-auth | admin                                  |
 | deezer-downloader   | local 🏠     | forwarded-auth | admin                                  |
