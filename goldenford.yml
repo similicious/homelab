@@ -148,3 +148,6 @@
     - role: dawarich
       tags:
         - dawarich
+    - role: audiothek-rss
+      tags:
+        - audiothek-rss

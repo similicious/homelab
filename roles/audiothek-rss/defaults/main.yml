@@ -1,0 +1,6 @@
+---
+service_name: audiothek-rss
+
+audiothekrss_compose_file: "{{ docker_compose_root }}/{{ service_name }}/docker-compose.yml"
+
+audiothekrss_dir: "{{ docker_container_data_root }}/{{ service_name }}"

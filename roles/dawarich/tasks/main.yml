@@ -1,5 +1,5 @@
 ---
-- name: "Ensure the appdata directory for services exist"
+- name: "Ensure the compose directory exist"
   file:
     path: "{{ dawarich_compose_file | dirname }}"
     state: directory
