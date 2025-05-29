@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+  app:
+    container_name: audiothek-rss
+    build:
+      context: "{{ audiothekrss_dir }}"
+      dockerfile: "{{ audiothekrss_dir }}/Dockerfile"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.audiothek-rss.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.audiothek-rss.loadbalancer.server.port: 80
+      com.centurylinklabs.watchtower.enable: "false"
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true

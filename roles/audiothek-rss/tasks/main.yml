@@ -1,0 +1,22 @@
+---
+- name: Clone ARD-Audiothek-RSS repo
+  ansible.builtin.git:
+    repo: "https://github.com/matztam/ARD-Audiothek-RSS.git"
+    dest: "{{ audiothekrss_dir }}"
+
+- name: "Ensure the compose directory exist"
+  file:
+    path: "{{ audiothekrss_compose_file | dirname }}"
+    state: directory
+
+- name: Ensure the docker-compose file is present
+  ansible.builtin.template:
+    src: docker-compose.yml
+    dest: "{{ audiothekrss_compose_file }}"
+
+- name: "Ensure the {{ service_name }} stack is running"
+  community.docker.docker_compose_v2:
+    project_name: "{{ service_name }}"
+    project_src: "{{ audiothekrss_compose_file | dirname }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"

@@ -7,6 +7,7 @@
 | adguard-home        | local 🏠     | internal       | -                                      |
 | airsonic-refix      | local 🏠     | forwarded-auth | admin                                  |
 | audiobookshelf      | public 🌍    | oidc           | media, admin / user (account creation) |
+| audiothek-rss       | local 🌍     | none           |                                        |
 | authelia            | public 🌍    | auth provider  | -                                      |
 | bazarr              | local 🏠     | forwarded-auth | admin                                  |
 | beets               | local 🏠     | none           | -                                      |
