@@ -52,7 +52,9 @@ traefik_args: >
   --certificatesresolvers.letsencrypt.acme.email={{ vault_email }}
   --certificatesresolvers.letsencrypt.acme.dnschallenge=true
   --certificatesresolvers.letsencrypt.acme.dnschallenge.provider=hetzner
+  --certificatesresolvers.letsencrypt.acme.dnschallenge.resolvers=8.8.8.8:53
   --certificatesresolvers.letsencrypt.acme.storage=/ssl-certs/acme.json
+
 traefik_env:
   HETZNER_API_KEY: "{{ vault_hetzner_api_key }}"
   LEGO_DISABLE_CNAME_SUPPORT: "true"
