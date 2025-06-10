@@ -54,7 +54,7 @@ services:
     restart: on-failure
     environment:
       RAILS_ENV: development
-      REDIS_URL: redis://dawarich_redis:6379/0
+      REDIS_URL: redis://dawarich_redis:6379
       DATABASE_HOST: dawarich_db
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: 4ba4159527b50a226a931f5ab9f2710f0bb2e53d0fa68cc4a54a3dd9bf5dbe96
@@ -115,7 +115,7 @@ services:
     restart: on-failure
     environment:
       RAILS_ENV: development
-      REDIS_URL: redis://dawarich_redis:6379/0
+      REDIS_URL: redis://dawarich_redis:6379
       DATABASE_HOST: dawarich_db
       DATABASE_USERNAME: postgres
       DATABASE_PASSWORD: 4ba4159527b50a226a931f5ab9f2710f0bb2e53d0fa68cc4a54a3dd9bf5dbe96
