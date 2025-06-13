@@ -1,6 +1,6 @@
 services:
   dawarich_redis:
-    image: redis:7.0-alpine
+    image: redis:7.4-alpine
     container_name: dawarich-redis
     command: redis-server
     networks:
@@ -131,8 +131,7 @@ services:
       # PHOTON_API_HOST: photon.komoot.io
       # PHOTON_API_USE_HTTPS: true # or false if you want to use HTTP instead of HTTPS
     healthcheck:
-      test:
-        ["CMD-SHELL", "bundle exec sidekiqmon processes | grep $${HOSTNAME}"]
+      test: ["CMD-SHELL", "pgrep -f sidekiq"]
       interval: 10s
       retries: 30
       start_period: 30s
@@ -147,11 +146,6 @@ services:
       dawarich_app:
         condition: service_healthy
         restart: true
-    deploy:
-      resources:
-        limits:
-          cpus: "0.50" # Limit CPU usage to 50% of one core
-          memory: "4G" # Limit memory usage to 4GB
 
 networks:
   app:
