@@ -17,27 +17,27 @@ services:
       BASE_URL: "https://changedetection.{{ public_domain }}"
       LOGGER_LEVEL: info
       TZ: "Europe/Berlin"
-      # PLAYWRIGHT_DRIVER_URL: "ws://browser-sockpuppet-chrome:3000"
+      PLAYWRIGHT_DRIVER_URL: "ws://browser-sockpuppet-chrome:3000"
     volumes:
       - "{{ changedetection_dir }}:/datastore"
-    # depends_on:
-    #   browser-sockpuppet-chrome:
-    #     condition: service_started
+    depends_on:
+      browser-sockpuppet-chrome:
+        condition: service_started
 
-  # browser-sockpuppet-chrome:
-  #   hostname: browser-sockpuppet-chrome
-  #   container_name: "{{ service_name }}-chrome"
-  #   image: dgtlmoon/sockpuppetbrowser:latest
-  #   cap_add:
-  #     - SYS_ADMIN
-  #   restart: unless-stopped
-  #   environment:
-  #     - SCREEN_WIDTH=1920
-  #     - SCREEN_HEIGHT=1024
-  #     - SCREEN_DEPTH=16
-  #     - MAX_CONCURRENT_CHROME_PROCESSES=10
-  #   networks:
-  #     - app
+  browser-sockpuppet-chrome:
+    hostname: browser-sockpuppet-chrome
+    container_name: "{{ service_name }}-chrome"
+    image: dgtlmoon/sockpuppetbrowser:latest
+    cap_add:
+      - SYS_ADMIN
+    restart: unless-stopped
+    environment:
+      - SCREEN_WIDTH=1920
+      - SCREEN_HEIGHT=1024
+      - SCREEN_DEPTH=16
+      - MAX_CONCURRENT_CHROME_PROCESSES=10
+    networks:
+      - app
 
 networks:
   app:
