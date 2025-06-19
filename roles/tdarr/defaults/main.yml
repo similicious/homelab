@@ -1,0 +1,9 @@
+---
+service_name: tdarr
+tdarr_compose_file: "{{ docker_compose_root }}/{{ service_name }}/docker-compose.yml"
+
+tdarr_dir: "{{ docker_container_data_root }}/{{ service_name }}"
+tdarr_server_dir: "{{ tdarr_dir }}/server"
+tdarr_configs_dir: "{{ tdarr_dir }}/configs"
+tdarr_logs_dir: "{{ tdarr_dir }}/logs"
+tdarr_transcode_cache_dir: "{{ tdarr_dir }}/transcode_cache"
