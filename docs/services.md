@@ -48,6 +48,7 @@
 | syncthing           | local 🏠     | internal       | -                                      |
 | tandoor-recipes     | public 🌍    | oauth          | home                                   |
 | traefik             | local 🏠     | forwarded-auth | admin                                  |
+| tdarr               | local 🏠     | forwarded-auth | -                                      |
 | transmission        | local 🏠     | forwarded-auth | admin                                  |
 | uptime-kuma         | local 🏠     | internal       | -                                      |
 | vikunja             | public 🌍    | oauth          | admin                                  |

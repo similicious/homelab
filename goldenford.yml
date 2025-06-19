@@ -151,3 +151,6 @@
     - role: audiothek-rss
       tags:
         - audiothek-rss
+    - role: tdarr
+      tags:
+        - tdarr

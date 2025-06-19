@@ -1,0 +1,43 @@
+services:
+  tdarr:
+    container_name: tdarr
+    image: ghcr.io/haveagitgat/tdarr:latest
+    restart: unless-stopped
+    ports:
+      - 8266:8266 # server port
+    environment:
+      TZ: "Europe/London"
+      PUID: "{{ docker_container_puid }}"
+      PGID: "{{ docker_container_pgid }}"
+      UMASK_SET: "002"
+      serverIP: "0.0.0.0"
+      serverPort: "8266"
+      webUIPort: "8265"
+      internalNode: "true"
+      inContainer: "true"
+      ffmpegVersion: "7"
+      nodeName: "{{ hostname }}-internal"
+      auth: "false"
+      openBrowser: "true"
+      maxLogSizeMB: "10"
+      cronPluginUpdate: ""
+    volumes:
+      - "{{ tdarr_server_dir }}:/app/server"
+      - "{{ tdarr_configs_dir }}:/app/configs"
+      - "{{ tdarr_logs_dir }}:/app/logs"
+      - "{{ storage_media_dir }}:/media"
+      - "{{ tdarr_transcode_cache_dir }}:/temp"
+    devices:
+      - /dev/dri:/dev/dri
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.tdarr.rule: "Host(`tdarr.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.tdarr.loadbalancer.server.port: "8265"
+      traefik.docker.network: "{{ traefik_network_name }}"
+      traefik.http.routers.tdarr.middlewares: "authelia@docker"
+    networks:
+      - "{{ traefik_network_name }}"
+
+networks:
+  traefik:
+    external: true
