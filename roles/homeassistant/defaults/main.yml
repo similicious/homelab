@@ -1,5 +1,4 @@
 ---
 service_name: homeassistant
 
-# uses volume by default
 homeassistant_config_dir: "{{ docker_container_data_root }}/{{ service_name }}"

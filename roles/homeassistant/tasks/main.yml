@@ -7,7 +7,13 @@
       - "{{ homeassistant_config_dir }}:/config"
       - "/run/dbus:/run/dbus:ro"
     restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.homeassistant.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.homeassistant.loadbalancer.server.port: "8123"
+      traefik.docker.network: "{{ traefik_network_name }}"
+    networks:
+      - name: "{{ traefik_network_name }}"
     env:
       TZ: "Europe/Berlin"
     privileged: true
-    network_mode: host
