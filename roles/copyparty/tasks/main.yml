@@ -1,0 +1,36 @@
+---
+- name: "Ensure the config folder for {{ service_name }} exist"
+  file:
+    path: "{{ copyparty_config_dir }}"
+    state: directory
+    owner: "{{ docker_container_puid | int }}"
+    group: "{{ docker_container_pgid | int }}"
+
+- name: Ensure the config file is present
+  ansible.builtin.template:
+    src: copyparty.conf
+    dest: "{{ copyparty_config_dir }}/copyparty.conf"
+    owner: "{{ docker_container_puid | int }}"
+    group: "{{ docker_container_pgid | int }}"
+  notify: restart_copyparty
+
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: copyparty/ac
+    volumes:
+      - "{{ storage_media_dir }}:/w/media"
+      - "{{ storage_data_dir }}:/w/data"
+      - "{{ copyparty_config_dir }}:/cfg"
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.copyparty.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.copyparty.loadbalancer.server.port: "3923"
+      traefik.http.routers.copyparty.middlewares: "authelia@docker"
+      traefik.docker.network: "{{ traefik_network_name }}"
+    user: "{{ docker_container_puid | string }}:{{ docker_container_pgid | string }}"
+    networks:
+      - name: "{{ traefik_network_name }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
