@@ -1,7 +1,7 @@
 services:
   hibiscus-server:
     container_name: "hibiscus-server"
-    image: ghcr.io/similicious/hibiscus-server-docker:2.10.25
+    image: ghcr.io/similicious/hibiscus-server-docker:2.10.27
     volumes:
       - "{{ hibiscus_server_dir }}:/opt/hibiscus-data"
     environment:
