@@ -13,6 +13,7 @@
 | beets               | local 🏠     | none           | -                                      |
 | beszel              | local 🏠     | oauth          | admin                                  |
 | changedetection     | local 🏠     | forwarded-auth | admin                                  |
+| copyparty           | local 🏠     | forwarded-auth | only configured users                  |
 | dawarich            | local 🏠     | internal       | -                                      |
 | ddns                | local 🏠     | none           | -                                      |
 | deemix              | local 🏠     | forwarded-auth | admin                                  |

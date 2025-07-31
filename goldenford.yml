@@ -154,3 +154,6 @@
     - role: tdarr
       tags:
         - tdarr
+    - role: copyparty
+      tags:
+        - copyparty

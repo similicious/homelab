@@ -1,0 +1,6 @@
+---
+- name: restart_copyparty
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    state: started
+    restart: true
