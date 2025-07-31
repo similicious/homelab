@@ -1,0 +1,141 @@
+http:
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 172.18.0.0/16 # You may also provide the subnet mask
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Load frontend themes from the themes folder
+frontend:
+  themes: !include_dir_merge_named themes
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+
+# Example configuration.yaml entry
+mqtt:
+  # RF Funksteckdosen
+  switch:
+    - unique_id: "wohnzimmer_lampe"
+      name: "Lampe"
+      command_topic: "cmnd/tasmota_143392/RfSend"
+      payload_on: "0x551"
+      payload_off: "0x554"
+
+    - unique_id: "wohnzimmer_lichterkette"
+      name: "Lichterkette"
+      command_topic: "cmnd/tasmota_143392/RfSend"
+      payload_on: "0x1451"
+      payload_off: "0x1454"
+
+    - unique_id: "wohnzimmer_leselampe"
+      name: "Leselampe"
+      command_topic: "cmnd/tasmota_143392/RfSend"
+      payload_on: "0x1151"
+      payload_off: "0x1154"
+
+    - unique_id: "wohnzimmer_projektor_3000_color_cycle"
+      name: "Farbwechsel"
+
+      state_topic: "home/living-room/star-projector/10/get"
+      command_topic: "home/living-room/star-projector/10/set"
+      payload_on: "1"
+      payload_off: "0"
+
+      device:
+        identifiers: "381f8d984d46"
+
+  # Shelly Plus H&T
+  sensor:
+    - unique_id: "wohnzimmer_plusht_temperature"
+      name: Wohnzimmer Temperatur
+      state_topic: "home/living-room/shellyplusht/status/temperature:0"
+      device_class: temperature
+      unit_of_measurement: "°C"
+      value_template: "{{ value_json.tC }}"
+      device:
+        name: "Shelly Plus H&T"
+        model: "Plus H&T"
+        manufacturer: "Shelly"
+        identifiers: c049ef8ba57c
+
+    - unique_id: "wohnzimmer_plusht_humidity"
+      name: Wohnzimmer Luftfeuchtigkeit
+      state_topic: "home/living-room/shellyplusht/status/humidity:0"
+      device_class: humidity
+      unit_of_measurement: "%"
+      value_template: "{{ value_json.rh }}"
+      device:
+        identifiers: c049ef8ba57c
+
+    - unique_id: "wohnzimmer_plusht_battery"
+      name: Shelly Plus H&T Akkustand
+      state_topic: "home/living-room/shellyplusht/status/devicepower:0"
+      device_class: battery
+      unit_of_measurement: "%"
+      value_template: "{{ value_json.battery.percent }}"
+      device:
+        identifiers: c049ef8ba57c
+
+  light:
+    # Projektor 3000
+    - unique_id: "wohnzimmer_projektor_3000_rgb"
+      name: "RGB"
+      availability_topic: "home/living-room/star-projector/connected"
+
+      device:
+        name: "Projektor 3000"
+        model: "SK26"
+        manufacturer: "Tuya"
+        identifiers: "381f8d984d46"
+
+      # on / off
+      state_topic: "home/living-room/star-projector/led_enableAll/get"
+      command_topic: "cmnd/home/living-room/star-projector/led_enableAll"
+      payload_on: 1
+      payload_off: 0
+
+      # rgb
+      rgb_state_topic: "home/living-room/star-projector/led_basecolor_rgb/get"
+      rgb_value_template: "{{ value[0:2]|int(base=16) }},{{ value[2:4]|int(base=16) }},{{ value[4:6]|int(base=16) }}"
+      rgb_command_topic: "cmnd/home/living-room/star-projector/led_basecolor_rgb"
+      rgb_command_template: "{{ '#%02x%02x%02x0000' | format(red, green, blue)}}"
+
+      # brightness
+      brightness_command_topic: "cmnd/home/living-room/star-projector/led_dimmer"
+      brightness_state_topic: "home/living-room/star-projector/led_dimmer/get"
+      brightness_scale: 100
+
+    - unique_id: "wohnzimmer_projektor_3000_laser"
+      name: "Laser"
+
+      state_topic: "home/living-room/star-projector/toggler_enable0/get"
+      command_topic: "cmnd/home/living-room/star-projector/toggler_enable0"
+      payload_on: 1
+      payload_off: 0
+
+      brightness_state_topic: "home/living-room/star-projector/toggler_set0/get"
+      brightness_value_template: "{{value}}"
+      brightness_command_topic: "cmnd/home/living-room/star-projector/toggler_set0"
+      brightness_scale: 100
+
+      device:
+        identifiers: "381f8d984d46"
+
+    - unique_id: "wohnzimmer_projektor_3000_motor"
+      name: "Motor"
+
+      state_topic: "home/living-room/star-projector/toggler_enable1/get"
+      command_topic: "cmnd/home/living-room/star-projector/toggler_enable1"
+      payload_on: 1
+      payload_off: 0
+
+      brightness_state_topic: "home/living-room/star-projector/toggler_set1/get"
+      brightness_value_template: "{{value}}"
+      brightness_command_topic: "cmnd/home/living-room/star-projector/toggler_set1"
+      brightness_scale: 100
+
+      device:
+        identifiers: "381f8d984d46"
