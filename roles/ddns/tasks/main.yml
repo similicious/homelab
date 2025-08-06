@@ -29,6 +29,7 @@
       - name: "{{ traefik_network_name }}"
     env:
       RESOLVER_ADDRESS: "9.9.9.9:53"
+      LOG_LEVEL: "debug"
     healthcheck:
       # The "NONE" check needs to be specified
       test: ["NONE"]
