@@ -187,7 +187,7 @@ identity_providers:
           - profile
         redirect_uris:
           - https://kitchenowl.{{ public_domain }}/signin/redirect
-          - kitchenowl:///signin/redirect
+          - kitchenowl:/signin/redirect
         response_modes: []
         userinfo_signed_response_alg: none
         token_endpoint_auth_method: client_secret_post
