@@ -157,3 +157,6 @@
     - role: copyparty
       tags:
         - copyparty
+    - role: n8n
+      tags:
+        - n8n
