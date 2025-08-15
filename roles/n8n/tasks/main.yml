@@ -1,0 +1,23 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: docker.n8n.io/n8nio/n8n
+    volumes:
+      - "{{ n8n_dir }}:/home/node/.n8n"
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.n8n.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.n8n.loadbalancer.server.port: "5678"
+      # traefik.http.routers.n8n.middlewares: "authelia@docker"
+      traefik.docker.network: "{{ traefik_network_name }}"
+    env:
+      # N8N_HOST: "{{ service_name }}.{{ public_domain }}"
+      NODE_ENV: "production"
+      WEBHOOK_URL: "https://{{ service_name }}.{{ public_domain }}"
+      GENERIC_TIMEZONE: "Europe/Berlin"
+    networks:
+      - name: "{{ traefik_network_name }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
