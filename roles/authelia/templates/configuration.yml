@@ -151,7 +151,7 @@ identity_providers:
         authorization_policy: "admin"
       - client_id: "yJWTAHtl5HUGWiTJWSWqTxGkTskmvRMq.moBTLfdRjImu9hZi_ZQxXK.QIJ~2_SMx00Eoivf"
         client_name: "Beszel"
-        client_secret: "$pbkdf2-sha512$310000$n4XbLwDHEqbjrxGQQ267/w$YH5e5nPKmRVnIiQ5r6kiDSWXhLzzcC.f8K4bPuwb91IpEj4cSAQxtZjqPnfYc7blP9Fr36U5qj1c4MMcHqvLYg"
+        client_secret: "{{ vault_authelia_identity_providers_oidc_clients_beszel_client_secret_hash }}"
         public: false
         redirect_uris:
           - "https://beszel.{{ public_domain }}/api/oauth2-redirect"

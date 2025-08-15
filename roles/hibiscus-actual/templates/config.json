@@ -22,7 +22,30 @@
       "accounts": [
         {
           "accountId": "bc0b47d9-29d9-4cd1-8e4d-9b680797594e",
-          "hibiscusAccountId": 1
+          "hibiscusAccountId": 1,
+          "fetchDaysAmount": 32,
+          "transactionFilters": [
+            [
+              {
+                "property": "empfaenger_konto",
+                "value": "{{ vault_hibiscus_actual_simon_account }}"
+              },
+              {
+                "property": "zweck",
+                "value": "Ausgleich"
+              }
+            ],
+            [
+              {
+                "property": "empfaenger_konto",
+                "value": "{{ vault_hibiscus_actual_lisa_account }}"
+              },
+              {
+                "property": "zweck",
+                "value": "Ausgleich"
+              }
+            ]
+          ]
         }
       ]
     }
