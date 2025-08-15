@@ -12,7 +12,7 @@
 
 - name: "Ensure the config for {{ service_name }} is present"
   template:
-    src: AdGuardHome.yaml.j2
+    src: AdGuardHome.yaml
     dest: "{{ adguard_config_dir }}/conf/AdGuardHome.yaml"
     owner: "{{ docker_container_puid | int }}"
     group: "{{ docker_container_pgid | int }}"

@@ -24,11 +24,11 @@ dns:
   refuse_any: true
   upstream_dns:
     - https://dns10.quad9.net/dns-query
-    - tls://dns2.digitalcourage.de
-    - '[//]10.4.20.1'
-    - '[/fritz.box/]10.4.20.1'
-    - '[/in-addr.arpa/]10.4.20.1'
-    - '[/ip6.arpa/]10.4.20.1'
+    - tls://dns3.digitalcourage.de
+    - "[//]10.4.20.1"
+    - "[/fritz.box/]10.4.20.1"
+    - "[/in-addr.arpa/]10.4.20.1"
+    - "[/ip6.arpa/]10.4.20.1"
   upstream_dns_file: ""
   bootstrap_dns:
     - 9.9.9.10
@@ -74,6 +74,8 @@ dns:
   use_http3_upstreams: false
   serve_plain_dns: true
   hostsfile_enabled: true
+  pending_requests:
+    enabled: true
 tls:
   enabled: false
   server_name: ""
@@ -103,55 +105,24 @@ statistics:
   enabled: true
 filters:
   - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_33.txt
-    name: Steven Black's List
-    id: 1699899895
-  - enabled: true
     url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_49.txt
     name: HaGeZi's Ultimate Blocklist
     id: 1699899896
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_27.txt
-    name: OISD Blocklist Big
-    id: 1699899897
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_1.txt
-    name: AdGuard DNS filter
-    id: 1699899898
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_4.txt
-    name: Dan Pollock's List
-    id: 1699899899
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_2.txt
-    name: AdAway Default Blocklist
-    id: 1699899900
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_8.txt
-    name: NoCoin Filter List
-    id: 1699899901
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_18.txt
-    name: Phishing Army
-    id: 1699899902
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_30.txt
-    name: Phishing URL Blocklist (PhishTank and OpenPhish)
-    id: 1699899903
-  - enabled: true
-    url: https://adguardteam.github.io/HostlistsRegistry/assets/filter_50.txt
-    name: uBlock₀ filters – Badware risks
-    id: 1699899904
 whitelist_filters: []
 user_rules:
-  - '@@||jobs.ebayclassifiedsgroup.com^$important'
+  - "@@||jobs.ebayclassifiedsgroup.com^$important"
   - /^(.*\.)?playstation\.(com|net|org)/
   - /^(.*\.)?scea\.com/
   - /^(.*\.)?sonyentertainmentnetwork\.com/
   - /^(.*\.)?nintendo\.(net|at|be|ch|co.jp|co.kr|co.nz|co.uk|co.za|com|com.au|com.hk|cz|de|dk|es|fi|fr|gr|hu|it|jp|nl|no|pt|ru|se|tw)/
   - /^(.*\.)?nintendo-europe\.com/
   - /^(.*\.)?nintendoswitch\.(cn|com|com.cn)/
-  - '@@||s.youtube.com'
+  - "@@||s.youtube.com"
+  - "@@||eu-office.events.data.microsoft.com^$important"
+  - "@@||eu-teams.events.data.microsoft.com^$important"
+  - "@@||eu-mobile.events.data.microsoft.com^$important"
+  - "@@||teams.events.data.microsoft.com^$important"
+  - "@@||self.events.data.microsoft.com^$important"
 dhcp:
   enabled: false
   interface_name: ""
