@@ -1,7 +1,7 @@
 services:
   broker:
     container_name: "{{ service_name }}-broker"
-    image: redis:7
+    image: docker.io/library/redis:8
     restart: unless-stopped
     volumes:
       - "{{ paperless_redis_data_dir }}:/data"
@@ -10,7 +10,7 @@ services:
 
   app:
     container_name: "{{ service_name }}-app"
-    image: ghcr.io/paperless-ngx/paperless-ngx:latest
+    image: ghcr.io/paperless-ngx/paperless-ngx
     restart: unless-stopped
     depends_on:
       - broker
@@ -32,7 +32,7 @@ services:
       PAPERLESS_DBPASS: "{{ vault_postgres_password }}"
       USERMAP_UID: "{{ docker_container_puid }}"
       USERMAP_GID: "{{ docker_container_pgid }}"
-      PAPERLESS_FILENAME_FORMAT: "{created_year}/{correspondent}/{created} - {title}"
+      PAPERLESS_FILENAME_FORMAT: "{% raw %}{{created_year}}/{{correspondent}}/{{created}} - {{title}}{% endraw %}"
       PAPERLESS_OCR_LANGUAGE: "deu+eng"
       PAPERLESS_URL: "https://paperless.{{ public_domain }}"
       PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
@@ -47,7 +47,7 @@ services:
       - traefik
 
   db:
-    image: docker.io/library/postgres:13
+    image: docker.io/library/postgres:17
     container_name: "{{ service_name }}-db"
     restart: unless-stopped
     volumes:
