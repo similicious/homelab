@@ -160,3 +160,6 @@
     - role: n8n
       tags:
         - n8n
+    - role: health-tracker
+      tags:
+        - health-tracker

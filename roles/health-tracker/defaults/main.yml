@@ -1,0 +1,4 @@
+---
+service_name: health-tracker
+
+health_tracker_data_dir: "{{ docker_container_data_root }}/health-tracker"
