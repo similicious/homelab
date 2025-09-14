@@ -163,3 +163,6 @@
     - role: health-tracker
       tags:
         - health-tracker
+    - role: ersatztv
+      tags:
+        - ersatztv
