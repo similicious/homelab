@@ -1,0 +1,19 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: ghcr.io/ersatztv/ersatztv
+    volumes:
+      - "{{ ersatztv_config_dir }}:/config"
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.ersatztv.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.ersatztv.loadbalancer.server.port: "8409"
+    env:
+      TZ: Europe/Berlin
+    devices:
+      - /dev/dri/renderD128:/dev/dri/renderD128
+      - /dev/dri/card1:/dev/dri/card0
+    networks:
+      - name: "{{ traefik_network_name }}"
