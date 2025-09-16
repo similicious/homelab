@@ -1,4 +1,4 @@
-plugins: fetchart embedart scrub zero spotify web bandcamp
+plugins: fetchart embedart scrub zero musicbrainz spotify web
 
 directory: /data/music
 library: /config/beets.blb
