@@ -27,20 +27,23 @@ services:
       - app
       - "{{ traefik_network_name }}"
 
-  collabora:
-    container_name: "{{ service_name }}-collabora"
-    image: collabora/code
+  onlyoffice:
+    container_name: "{{ service_name }}-onlyoffice"
+    image: onlyoffice/documentserver:latest
     environment:
-      aliasgroup1: "https://{{ service_name }}.{{ public_domain }}:443"
+      JWT_ENABLED: "true"
+      JWT_SECRET: "{{ vault_nextcloud_onlyoffice_jwt_secret }}"
     restart: unless-stopped
     labels:
       traefik.enable: "true"
-      traefik.http.routers.collabora.rule: "Host(`collabora.{{ public_domain }}`)"
-      traefik.http.services.collabora.loadbalancer.server.port: "9980"
-      traefik.http.services.collabora.loadbalancer.server.scheme: "https"
+      traefik.http.routers.onlyoffice.rule: "Host(`onlyoffice.{{ public_domain }}`)"
+      traefik.http.routers.onlyoffice.middlewares: "onlyoffice-headers"
+      traefik.http.middlewares.onlyoffice-headers.headers.customrequestheaders.X-Forwarded-Proto: "https"
+      traefik.http.services.onlyoffice.loadbalancer.server.port: "80"
       traefik.docker.network: "{{ traefik_network_name }}"
-    cap_add:
-      - MKNOD
+    volumes:
+      - "{{ nextcloud_onlyoffice_data_dir }}:/var/www/onlyoffice/Data"
+      - "{{ nextcloud_onlyoffice_logs_dir }}:/var/log/onlyoffice"
     networks:
       - app
       - "{{ traefik_network_name }}"

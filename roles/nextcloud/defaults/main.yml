@@ -10,3 +10,6 @@ nextcloud_app_config_dir: "{{ nextcloud_app_dir }}/config"
 nextcloud_app_custom_apps_dir: "{{ nextcloud_app_dir }}/custom_apps"
 
 nextcloud_db_dir: "{{ nextcloud_dir }}/db"
+
+nextcloud_onlyoffice_logs_dir: "{{ nextcloud_dir }}/onlyoffice/logs"
+nextcloud_onlyoffice_data_dir: "{{ nextcloud_dir }}/onlyoffice/data"
