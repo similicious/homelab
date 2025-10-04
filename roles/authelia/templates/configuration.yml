@@ -40,6 +40,8 @@ access_control:
       policy: bypass
       resources:
         - "^/api.*"
+    - domain: "copyparty.{{ public_domain }}"
+      policy: bypass
     - domain: "*.{{ public_domain }}"
       subject: "group:admin"
       policy: two_factor
