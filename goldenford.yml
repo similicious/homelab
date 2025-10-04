@@ -103,9 +103,6 @@
     - role: packlist
       tags:
         - packlist
-    - role: filebrowser
-      tags:
-        - filebrowser
     - role: searxng
       tags:
         - searxng
