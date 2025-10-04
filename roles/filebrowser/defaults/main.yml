@@ -1,3 +1,0 @@
----
-service_name: "filebrowser"
-filebrowser_config_dir: "{{ docker_container_data_root }}/filebrowser"
