@@ -1,4 +1,9 @@
 ---
+- name: Ensure the config file file is present
+  ansible.builtin.template:
+    src: settings.yml
+    dest: "{{ searxng_config_path }}"
+
 - name: "Ensure {{ service_name }} is running as a docker container"
   community.docker.docker_container:
     name: "{{ service_name }}"
@@ -12,5 +17,8 @@
       traefik.http.services.searxng.loadbalancer.server.port: "8080"
     networks:
       - name: "{{ traefik_network_name }}"
+    env:
+      SEARXNG_SECRET: "{{ vault_searxng_secret }}"
+      SEARXNG_METHOD: "GET"
   vars:
     ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
