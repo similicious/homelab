@@ -2,3 +2,5 @@
 service_name: searxng
 
 searxng_dir: "{{ docker_container_data_root }}/{{ service_name }}"
+
+searxng_config_path: "{{ searxng_dir }}/settings.yml"
