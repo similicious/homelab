@@ -1,0 +1,22 @@
+---
+- name: "Ensure the appdata directory for services exist"
+  file:
+    path: "{{ immich_compose_file | dirname }}"
+    state: directory
+
+- name: Ensure the docker-compose file is present
+  ansible.builtin.template:
+    src: docker-compose.yml
+    dest: "{{ immich_compose_file }}"
+
+- name: Ensure the .env file is present
+  ansible.builtin.template:
+    src: .env
+    dest: "{{ immich_env_file }}"
+
+- name: "Make sure {{ service_name }} is running as a container"
+  community.docker.docker_compose_v2:
+    project_name: "{{ service_name }}"
+    project_src: "{{ immich_compose_file | dirname }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"

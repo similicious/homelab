@@ -163,3 +163,6 @@
     - role: ersatztv
       tags:
         - ersatztv
+    - role: immich
+      tags:
+        - immich
