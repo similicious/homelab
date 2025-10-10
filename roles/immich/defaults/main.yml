@@ -1,0 +1,15 @@
+---
+service_name: immich
+
+immich_compose_file: "{{ docker_compose_root }}/{{ service_name }}/docker-compose.yml"
+immich_env_file: "{{ docker_compose_root }}/{{ service_name }}/.env"
+
+immich_dir: "{{ docker_container_data_root }}/immich"
+
+immich_app_dir: "{{ immich_dir }}/app"
+immich_app_upload_dir: "{{ immich_app_dir }}/upload"
+immich_app_model_cache_dir: "{{ immich_app_dir }}/model-cache"
+
+immich_drop_dir: "{{ immich_dir }}/drop"
+
+immich_db_dir: "{{ immich_dir }}/db"

@@ -218,3 +218,24 @@ identity_providers:
           - "groups"
           - "email"
         authorization_policy: "home"
+      - client_id: "26Nxn_L8gC3b5bPMBELr_aQev0EN4DA0B-T9FLaH5AeQWv"
+        client_name: "Immich"
+        client_secret: "{{ vault_authelia_identity_providers_oidc_clients_immich_client_secret_hash }}"
+        public: false
+        require_pkce: false
+        redirect_uris:
+          - "https://immich.{{ public_domain }}/auth/login"
+          - "https://immich.{{ public_domain }}/user-settings"
+          - "app.immich:///oauth-callback"
+        scopes:
+          - "openid"
+          - "profile"
+          - "email"
+        response_types:
+          - "code"
+        grant_types:
+          - "authorization_code"
+        id_token_signed_response_alg: "RS256"
+        userinfo_signed_response_alg: "RS256"
+        token_endpoint_auth_method: "client_secret_post"
+        authorization_policy: "admin"

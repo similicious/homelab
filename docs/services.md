@@ -22,6 +22,7 @@
 | hibiscus-server     | local 🏠     | internal       | -                                       |
 | hibiscus-actual     | local 🏠     | none           | -                                       |
 | homeassistant       | local 🏠     | internal       | -                                       |
+| immich              | local 🏠     | oauth          | admin                                   |
 | jdownloader2        | local 🏠     | forwarded-auth | admin                                   |
 | jellyfin            | public 🌍    | internal, ldap | admin, media                            |
 | jellyseerr          | public 🌍    | via jellyfin   |                                         |
