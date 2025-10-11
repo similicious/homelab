@@ -55,13 +55,13 @@
         {
           "accountId": "f662d40d-f4fb-44cb-b7cf-ea850a3a10c6",
           "hibiscusAccountId": 33,
-          "fetchDaysAmount": 30,
+          "fetchDaysAmount": 10,
           "transactionFilters": []
         },
         {
           "accountId": "fd1e032e-32dc-4349-bf7c-dc8425cb0f74",
           "hibiscusAccountId": 34,
-          "fetchDaysAmount": 30,
+          "fetchDaysAmount": 10,
           "transactionFilters": []
         }
       ]
