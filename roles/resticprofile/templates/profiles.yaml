@@ -30,6 +30,9 @@ base:
 
       # dawarich
       - docker exec -t dawarich-db pg_dumpall --clean --if-exists --username=postgres | gzip --rsyncable > "/mnt/appdata/docker/dawarich/backup/dawarich.sql.gz"
+
+      # immich
+      - docker exec -t immich_postgres pg_dumpall --clean --if-exists --username=postgres | gzip --rsyncable > "/mnt/appdata/docker/immich/db-backup/dump.sql.gz"
     source:
       # Data
       - /mnt/storage/data
@@ -89,6 +92,13 @@ base:
 
       # dawarich
       - /mnt/appdata/docker/dawarich/backup
+
+      # immich
+      - /mnt/appdata/docker/immich/app/upload/backups
+      - /mnt/appdata/docker/immich/app/upload/library
+      - /mnt/appdata/docker/immich/app/upload/upload
+      - /mnt/appdata/docker/immich/app/upload/profile
+      - /mnt/appdata/docker/immich/db-backup
 
     exclude:
       # General
