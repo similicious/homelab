@@ -21,7 +21,7 @@
     image: ghcr.io/analogj/scrutiny:master-omnibus
     volumes:
       - "{{ scrutiny_config_dir }}:/opt/scrutiny/config"
-      - "{{ scrutiny_db_dir }}:/opt/scrutiny/influxdbsh"
+      - "{{ scrutiny_db_dir }}:/opt/scrutiny/influxdb"
       - /run/udev:/run/udev:ro
     restart_policy: unless-stopped
     labels:
