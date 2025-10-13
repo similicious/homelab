@@ -4,6 +4,11 @@
     path: "{{ immich_compose_file | dirname }}"
     state: directory
 
+- name: "Ensure the backup db directory exists"
+  file:
+    path: "{{ immich_db_backup_dir | dirname }}"
+    state: directory
+
 - name: Ensure the docker-compose file is present
   ansible.builtin.template:
     src: docker-compose.yml

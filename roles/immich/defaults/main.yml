@@ -13,3 +13,5 @@ immich_app_model_cache_dir: "{{ immich_app_dir }}/model-cache"
 immich_drop_dir: "{{ immich_dir }}/drop"
 
 immich_db_dir: "{{ immich_dir }}/db"
+
+immich_db_backup_dir: "{{ immich_dir }}/db-backup"
