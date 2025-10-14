@@ -166,3 +166,6 @@
     - role: immich
       tags:
         - immich
+    - role: omni-tools
+      tags:
+        - omni-tools
