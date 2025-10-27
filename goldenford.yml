@@ -43,9 +43,6 @@
     - role: paperless-ngx
       tags:
         - paperless-ngx
-    - role: photoprism
-      tags:
-        - photoprism
     - role: tandoor-recipes
       tags:
         - tandoor-recipes

@@ -12,9 +12,6 @@ base:
       - docker exec paperless-ngx-db pg_dump -U paperless paperless > /mnt/appdata/docker/paperless-ngx/backup/paperless.sql
       - docker exec paperless-ngx-db pg_dumpall -U paperless --globals-only > /mnt/appdata/docker/paperless-ngx/backup/paperless-postgres-globals.sql
 
-      # Photoprism
-      - docker exec photoprism-app photoprism backup -i - > /mnt/appdata/docker/photoprism/backup/photoprism-db.sql
-
       # Recipes
       - docker exec recipes-db pg_dump -U recipes recipes > /mnt/appdata/docker/recipes/backup/recipes.sql
       - docker exec recipes-db pg_dumpall -U recipes --globals-only > /mnt/appdata/docker/recipes/backup/recipes-postgres-globals.sql
@@ -52,10 +49,6 @@ base:
       # Paperless-ngx
       - /mnt/appdata/docker/paperless-ngx/app/media
       - /mnt/appdata/docker/paperless-ngx/backup/
-
-      # Photoprism
-      - /mnt/appdata/docker/photoprism/app/originals
-      - /mnt/appdata/docker/photoprism/backup/
 
       # Recipes
       - /mnt/appdata/docker/recipes/app/mediafiles
