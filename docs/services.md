@@ -34,7 +34,6 @@
 | open-webui        | local 🏠     | oauth          | admin                                   |
 | packlist          | local 🏠     | internal       | -                                       |
 | paperless-ngx     | local 🏠     | forwarded-auth | admin                                   |
-| photoprism        | public 🌍    | internal       | -                                       |
 | portainer         | local 🏠     | oauth          | admin                                   |
 | prowlarr          | local 🏠     | forwarded-auth | admin                                   |
 | radarr            | local 🏠     | forwarded-auth | admin                                   |
