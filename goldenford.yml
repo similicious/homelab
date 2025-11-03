@@ -166,3 +166,6 @@
     - role: omni-tools
       tags:
         - omni-tools
+    - role: rss-bridge
+      tags:
+        - rss-bridge
