@@ -39,6 +39,7 @@
 | radarr            | local 🏠     | forwarded-auth | admin                                   |
 | redlib            | local 🏠     | none           | -                                       |
 | rest-server       | tailscale 🔐 | none           | -                                       |
+| rss-bridge        | local        | none           | -                                       |
 | sabnzbd           | local 🏠     | forwarded-auth | admin                                   |
 | scanservjs        | local 🏠     | none           | -                                       |
 | scrutiny          | local 🏠     | none           | -                                       |
