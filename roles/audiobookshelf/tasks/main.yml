@@ -3,6 +3,8 @@
   community.docker.docker_container:
     name: "{{ service_name }}"
     image: ghcr.io/advplyr/audiobookshelf:latest
+    env:
+      DISABLE_SSRF_REQUEST_FILTER: "1"
     volumes:
       - "{{ audiobookshelf_app_config_dir }}:/config"
       - "{{ audiobookshelf_app_metadata_dir }}:/metadata"
