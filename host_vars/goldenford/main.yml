@@ -20,9 +20,6 @@ samba_users:
   - name: "{{ username }}"
     password: "{{ vault_samba_user_password }}"
 
-samba_guest_account: "{{ username }}"
-samba_map_to_guest: "Bad User"
-
 samba_shares:
   - name: media
     path: "{{ storage_media_dir }}"
@@ -32,6 +29,14 @@ samba_shares:
     path: "{{ storage_data_dir }}"
     group: "{{ username }}"
     write_list: "{{ username }}"
+  - name: PS2
+    path: "{{ storage_media_dir }}/roms/Sony - PlayStation 2/Share"
+    group: "{{ username }}"
+    write_list: "{{ username }}"
+
+samba_server_min_protocol: "NT1"
+samba_global_config_extras: |
+  ntlm auth = yes
 
 # all docker services
 docker_container_data_root: "/mnt/appdata/docker"

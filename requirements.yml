@@ -4,10 +4,10 @@ roles:
   - name: geerlingguy.pip
   - name: geerlingguy.docker
   - name: githubixx.ansible_role_wireguard
-  - name: bertvv.samba
   - name: geerlingguy.security
   - name: geerlingguy.swap
   - name: geerlingguy.hdparm
 collections:
   - name: community.docker
   - name: lucasheld.uptime_kuma
+  - name: vladgh.samba

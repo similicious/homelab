@@ -70,9 +70,9 @@
     - role: jdownloader2
       tags:
         - jdownloader2
-    - role: bertvv.samba
+    - role: vladgh.samba.server
       tags:
-        - bertvv.samba
+        - samba
     - role: resticprofile
       tags:
         - resticprofile
