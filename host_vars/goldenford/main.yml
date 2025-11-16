@@ -15,7 +15,7 @@ security_sudoers_passwordless:
 security_ssh_allowed_users:
   - "{{ username }}"
 
-# bertvv.samba
+# vladgh.samba.server
 samba_users:
   - name: "{{ username }}"
     password: "{{ vault_samba_user_password }}"
@@ -37,6 +37,8 @@ samba_shares:
 samba_server_min_protocol: "NT1"
 samba_global_config_extras: |
   ntlm auth = yes
+  veto files = /._*/.DS_Store/Thumbs.db/desktop.ini/
+  delete veto files = yes
 
 # all docker services
 docker_container_data_root: "/mnt/appdata/docker"
