@@ -1,3 +1,0 @@
----
-service_name: "ersatztv"
-ersatztv_config_dir: "{{ docker_container_data_root }}/ersatztv"
