@@ -166,6 +166,9 @@
     - role: rss-bridge
       tags:
         - rss-bridge
+    - role: streamystats
+      tags:
+        - streamystats
     - role: udpbd
       tags:
         - udpbd

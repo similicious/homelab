@@ -46,6 +46,7 @@
 | sonarr            | local 🏠     | forwarded-auth | admin                                   |
 | speedtest         | local 🏠     | none           | -                                       |
 | stirling-pdf      | local 🏠     | none           | -                                       |
+| streamystats      | local 🏠     | via jellyfin   | -                                       |
 | syncthing         | local 🏠     | internal       | -                                       |
 | tandoor-recipes   | public 🌍    | oauth          | home                                    |
 | traefik           | local 🏠     | forwarded-auth | admin                                   |

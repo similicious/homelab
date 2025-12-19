@@ -1,0 +1,7 @@
+---
+service_name: streamystats
+
+streamystats_compose_file: "{{ docker_compose_root }}/{{ service_name }}/docker-compose.yml"
+streamystats_compose_dir: "{{ streamystats_compose_file | dirname }}"
+
+streamystats_dir: "{{ docker_container_data_root }}/{{ service_name }}"
