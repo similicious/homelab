@@ -154,9 +154,6 @@
     - role: health-tracker
       tags:
         - health-tracker
-    - role: ersatztv
-      tags:
-        - ersatztv
     - role: immich
       tags:
         - immich
