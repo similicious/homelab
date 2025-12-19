@@ -54,4 +54,3 @@
 | transmission      | local 🏠     | forwarded-auth | admin                                   |
 | uptime-kuma       | local 🏠     | internal       | -                                       |
 | vikunja           | public 🌍    | oauth          | admin                                   |
-| webtop            | local 🏠     | forwarded-auth | admin                                   |
