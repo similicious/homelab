@@ -58,9 +58,6 @@
     - role: audiobookshelf
       tags:
         - audiobookshelf
-    - role: webtop
-      tags:
-        - webtop
     - role: navidrome
       tags:
         - navidrome
