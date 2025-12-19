@@ -1,0 +1,21 @@
+---
+- name: Ensure the udpbd-server systemd unit file is present
+  ansible.builtin.template:
+    dest: "/etc/systemd/system/{{ udpbd_service_name }}"
+    src: udpbd.service
+    mode: "0644"
+
+- name: Ensure the udpbd maintenance script is present
+  ansible.builtin.template:
+    dest: "{{ udpbd_maintenance_script_path }}"
+    src: udpbd-maintenance.sh
+    owner: "{{ username }}"
+    group: "{{ username }}"
+    mode: "0755"
+
+- name: Force systemd to reload config and start the service
+  ansible.builtin.systemd:
+    name: udpbd
+    state: started
+    enabled: yes
+    daemon_reload: yes

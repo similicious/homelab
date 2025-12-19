@@ -166,3 +166,6 @@
     - role: rss-bridge
       tags:
         - rss-bridge
+    - role: udpbd
+      tags:
+        - udpbd
