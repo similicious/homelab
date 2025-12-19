@@ -1,0 +1,7 @@
+---
+udpbd_image_path: "{{ storage_media_dir }}/roms/Sony - PlayStation 2/udpbd.img"
+udpbd_mount_path: "{{ storage_media_dir }}/roms/Sony - PlayStation 2/Share-Udpbd"
+udpbd_maintenance_script_path: "{{ storage_media_dir }}/roms/Sony - PlayStation 2/udpbd-maintenance.sh"
+
+udpbd_bin_path: "/home/similicious/udpbd-server.x86_64"
+udpbd_service_name: "udpbd.service"
