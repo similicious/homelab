@@ -1,0 +1,83 @@
+services:
+  migrate:
+    container_name: streamystats-migrate
+    image: docker.io/fredrikburmester/streamystats-v2-migrate:latest
+    environment:
+      - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD={{ vault_streamystats_postgres_password }}
+      - POSTGRES_DB=streamystats
+      - PGPASSWORD={{ vault_streamystats_postgres_password }}
+    depends_on:
+      vectorchord:
+        condition: service_healthy
+    restart: "no"
+    networks:
+      - app
+
+  nextjs-app:
+    container_name: streamystats
+    image: docker.io/fredrikburmester/streamystats-v2-nextjs:latest
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
+      - JOB_SERVER_URL=http://job-server:3005
+      - HOSTNAME=0.0.0.0
+      - SESSION_SECRET={{ vault_streamystats_session_secret }}
+    depends_on:
+      vectorchord:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    networks:
+      - app
+      - traefik
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.streamystats.rule: "Host(`{{ service_name }}.{{ public_domain }}`)  && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.streamystats.loadbalancer.server.port: "3000"
+      traefik.docker.network: "{{ traefik_network_name }}"
+
+  job-server:
+    container_name: streamystats-job-server
+    image: docker.io/fredrikburmester/streamystats-v2-job-server:latest
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
+      - PORT=3005
+      - HOST=0.0.0.0
+    depends_on:
+      vectorchord:
+        condition: service_healthy
+      migrate:
+        condition: service_completed_successfully
+    restart: unless-stopped
+    networks:
+      - app
+      - traefik
+
+  vectorchord:
+    container_name: streamystats-postgres
+    image: tensorchord/vchord-postgres:pg17-v0.4.1
+    command: ["postgres", "-c", "log_checkpoints=off"]
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD={{ vault_streamystats_postgres_password }}
+      - POSTGRES_DB=streamystats
+    volumes:
+      - "{{ streamystats_dir }}:/var/lib/postgresql/data"
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d streamystats"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - app
+
+networks:
+  traefik:
+    external: true
+  app:
