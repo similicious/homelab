@@ -75,12 +75,19 @@ traefik_dynamic_file_content: |
       proxmox:
         rule: "Host(`proxmox.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
         service: "proxmox"
+      uptime-kuma:
+        rule: "Host(`status.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+        service: "uptime-kuma"
 
     services:
       proxmox:
         loadBalancer:
           servers:
             - url: "https://10.4.20.60:8006"
+      uptime-kuma:
+        loadBalancer:
+          servers:
+            - url: "http://offsite-nas.van-crocodile.ts.net:3001"
 
 # role: portainer
 portainer_config_dir: "{{ docker_container_data_root }}/portainer"
