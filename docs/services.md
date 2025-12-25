@@ -17,6 +17,7 @@
 | ddns              | local 🏠     | none           | -                                       |
 | deemix            | local 🏠     | forwarded-auth | admin                                   |
 | deezer-downloader | local 🏠     | forwarded-auth | admin                                   |
+| feishin           | local 🏠     | forwarded-auth | admin                                   |
 | health-tracker    | local 🏠     | internal       | -                                       |
 | hibiscus-server   | local 🏠     | internal       | -                                       |
 | hibiscus-actual   | local 🏠     | none           | -                                       |

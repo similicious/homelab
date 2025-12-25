@@ -39,3 +39,23 @@
       - name: "{{ traefik_network_name }}"
   vars:
     ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
+
+- name: "Ensure feishin is running as a docker container"
+  community.docker.docker_container:
+    name: "feishin"
+    image: ghcr.io/jeffvli/feishin:latest
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.feishin.rule: "Host(`feishin.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.feishin.loadbalancer.server.port: "9180"
+      traefik.http.routers.feishin.middlewares: "authelia@docker"
+    env:
+      SERVER_URL: "https://{{ service_name }}.{{ public_domain }}"
+      SERVER_NAME: navidrome # pre-defined server name
+      SERVER_LOCK: "true" # When true AND name/type/url are set, only username/password can be toggled
+      SERVER_TYPE: navidrome # the allowed types are: jellyfin, navidrome, subsonic. These values are case insensitive
+    networks:
+      - name: "{{ traefik_network_name }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"

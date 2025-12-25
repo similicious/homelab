@@ -31,6 +31,8 @@ access_control:
       policy: bypass
       resources:
         - "^/rest"
+        - "^/api"
+        - "^/auth"
     - domain: "stash.{{ public_domain }}"
       policy: bypass
       resources:
