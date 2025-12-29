@@ -91,7 +91,7 @@ services:
     container_name: immich-drop
     restart: unless-stopped
     environment:
-      IMMICH_BASE_URL: http://immich_server:2283/api
+      IMMICH_BASE_URL: http://immich-server:2283/api
       IMMICH_API_KEY: "{{ vault_immich_drop_api_key }}"
       IMMICH_ALBUM_NAME: Drop
       PUBLIC_UPLOAD_PAGE_ENABLED: "true" # keep disabled by default
