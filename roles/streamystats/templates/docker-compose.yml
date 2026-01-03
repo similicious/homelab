@@ -1,7 +1,7 @@
 services:
   migrate:
     container_name: streamystats-migrate
-    image: docker.io/fredrikburmester/streamystats-v2-migrate:v2.15.0
+    image: docker.io/fredrikburmester/streamystats-v2-migrate:v2.16.0
     environment:
       - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
       - POSTGRES_USER=postgres
@@ -17,7 +17,7 @@ services:
 
   nextjs-app:
     container_name: streamystats
-    image: docker.io/fredrikburmester/streamystats-v2-nextjs:v2.15.0
+    image: docker.io/fredrikburmester/streamystats-v2-nextjs:v2.16.0
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
@@ -41,7 +41,7 @@ services:
 
   job-server:
     container_name: streamystats-job-server
-    image: docker.io/fredrikburmester/streamystats-v2-job-server:v2.15.0
+    image: docker.io/fredrikburmester/streamystats-v2-job-server:v2.16.0
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
