@@ -93,6 +93,9 @@ base:
       - /mnt/appdata/docker/immich/app/upload/profile
       - /mnt/appdata/docker/immich/db-backup
 
+      # grist
+      - /mnt/appdata/docker/grist
+
     exclude:
       # General
       - node_modules
