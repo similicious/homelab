@@ -18,6 +18,7 @@
 | deemix            | local 🏠     | forwarded-auth | admin                                   |
 | deezer-downloader | local 🏠     | forwarded-auth | admin                                   |
 | feishin           | local 🏠     | forwarded-auth | admin                                   |
+| grist             | local 🏠     | oidc           | admin                                   |
 | health-tracker    | local 🏠     | internal       | -                                       |
 | hibiscus-server   | local 🏠     | internal       | -                                       |
 | hibiscus-actual   | local 🏠     | none           | -                                       |

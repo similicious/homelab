@@ -1,0 +1,25 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: gristlabs/grist-oss
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.grist.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.grist.loadbalancer.server.port: "8484"
+      traefik.docker.network: "traefik"
+    volumes:
+      - "{{ grist_dir }}:/persist"
+    networks:
+      - name: "{{ traefik_network_name }}"
+    env:
+      APP_HOME_URL: "https://grist.{{ public_domain }}"
+      GRIST_SESSION_SECRET: "{{ vault_grist_session_secret }}"
+      GRIST_DEFAULT_EMAIL: "{{ vault_mail }}"
+      GRIST_OIDC_IDP_ISSUER: "https://auth.{{ public_domain }}"
+      GRIST_OIDC_IDP_CLIENT_ID: "gYx1OXgI_aSb9BZlrsItPgmEdJ4zcI3jpZRSbGoq0UCktajAnvZN8KTZiMk4F3y9f6~1KpEZ"
+      GRIST_OIDC_IDP_CLIENT_SECRET: "{{ vault_authelia_identity_providers_oidc_clients_grist_client_client_secret }}"
+      GRIST_OIDC_IDP_SKIP_END_SESSION_ENDPOINT: "true"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
