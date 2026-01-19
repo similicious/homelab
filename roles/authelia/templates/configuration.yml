@@ -241,3 +241,13 @@ identity_providers:
         userinfo_signed_response_alg: "RS256"
         token_endpoint_auth_method: "client_secret_post"
         authorization_policy: "admin"
+      - client_id: "gYx1OXgI_aSb9BZlrsItPgmEdJ4zcI3jpZRSbGoq0UCktajAnvZN8KTZiMk4F3y9f6~1KpEZ"
+        client_name: "Grist"
+        client_secret: "{{ vault_authelia_identity_providers_oidc_clients_grist_client_client_secret_hash }}"
+        redirect_uris:
+          - "https://grist.{{ public_domain }}/oauth2/callback"
+        scopes:
+          - "openid"
+          - "profile"
+          - "email"
+        authorization_policy: "admin"
