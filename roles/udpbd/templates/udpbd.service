@@ -3,6 +3,10 @@ Description=UDPBD Server for PS2
 After=network.target
 
 [Service]
+Nice=-5
+IOSchedulingClass=best-effort
+IOSchedulingPriority=0
+CPUSchedulingPolicy=deadline
 Type=simple
 ExecStart={{ udpbd_bin_path }} "{{ udpbd_image_path }}"
 Restart=always
