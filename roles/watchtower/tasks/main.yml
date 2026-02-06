@@ -5,9 +5,6 @@
     image: containrrr/watchtower
     volumes: "{{ watchtower_mounts }}"
     command: --interval 28800 --cleanup --no-startup-message
-    env:
-      WATCHTOWER_NOTIFICATIONS: "shoutrrr"
-      WATCHTOWER_NOTIFICATION_URL: "generic+https://ntfy.sh/{{ vault_ntfy_topic }}?title=WatchtowerOn{{ hostname|title }}"
     restart_policy: unless-stopped
   vars:
     ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
