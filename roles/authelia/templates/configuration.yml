@@ -203,6 +203,7 @@ identity_providers:
           - "https://audiobookshelf.{{ public_domain }}/audiobookshelf/auth/openid/mobile-redirect"
           - "audiobookshelf://oauth"
           - "plappa://oauth"
+          - "lissen://oauth"
         scopes:
           - "openid"
           - "profile"
