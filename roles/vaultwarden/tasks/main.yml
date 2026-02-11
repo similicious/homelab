@@ -1,0 +1,18 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: vaultwarden/server:latest
+    volumes:
+      - "{{ vaultwarden_dir }}:/data"
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.vaultwarden.rule: "Host(`vaultwarden.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.vaultwarden.loadbalancer.server.port: "80"
+    env:
+      DOMAIN: "https://vaultwarden.{{ public_domain }}"
+    networks:
+      - name: "{{ traefik_network_name }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
