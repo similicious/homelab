@@ -3,6 +3,7 @@ service_name: beszel
 
 beszel_dir: "{{ docker_container_data_root }}/{{ service_name }}"
 
+beszel_hub_traefik_host_rule: "Host(`{{ beszel_hub_public_domain }}`)"
 beszel_hub_enabled: false
 beszel_agent_default_mounts:
   - /var/run/docker.sock:/var/run/docker.sock:ro
