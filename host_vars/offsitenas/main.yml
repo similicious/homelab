@@ -22,3 +22,5 @@ beszel_agent_mounts:
   - "{{ storage_dir }}:/extra-filesystems/hdd:ro"
 beszel_agent_network_mode: "host"
 beszel_hub_public_domain: "{{ vault_beszel_hub_public_domain }}"
+beszel_agent_devices:
+  - /dev/sda:/dev/sda

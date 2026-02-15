@@ -133,3 +133,9 @@ beszel_agent_mounts:
 beszel_agent_networks:
   - name: "{{ traefik_network_name }}"
 beszel_hub_public_domain: "{{ service_name }}.{{ public_domain }}"
+beszel_agent_devices:
+  - /dev/disk/by-id/ata-WDC_WD120EFBX-68B0EN0_D7GUAKLN:/dev/sda
+  - /dev/disk/by-id/ata-WDC_WD120EFBX-68B0EN0_D7GUH0TN:/dev/sdb
+  - /dev/disk/by-id/ata-WDC_WD120EFBX-68B0EN0_D7GY9YAN:/dev/sdc
+  - /dev/disk/by-id/ata-WDC_WD120EFBX-68B0EN0_D7JVM89N:/dev/sdd
+  - /dev/disk/by-id/nvme-Samsung_SSD_970_EVO_Plus_1TB_S4EWNX0W559138B:/dev/nvme0
