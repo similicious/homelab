@@ -21,3 +21,4 @@ docker_container_data_root: "/home/{{ username }}/docker"
 beszel_agent_mounts:
   - "{{ storage_dir }}:/extra-filesystems/hdd:ro"
 beszel_agent_network_mode: "host"
+beszel_hub_public_domain: "{{ vault_beszel_hub_public_domain }}"

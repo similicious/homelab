@@ -132,3 +132,4 @@ beszel_agent_mounts:
   - "{{ storage_media_dir }}:/extra-filesystems/media:ro"
 beszel_agent_networks:
   - name: "{{ traefik_network_name }}"
+beszel_hub_public_domain: "{{ service_name }}.{{ public_domain }}"
