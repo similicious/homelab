@@ -20,7 +20,7 @@
 - name: "Ensure {{ service_name }} agent is running as a docker container"
   community.docker.docker_container:
     name: beszel-agent
-    image: henrygd/beszel-agent
+    image: henrygd/beszel-agent:alpine
     restart_policy: unless-stopped
     volumes: "{{ beszel_agent_combined_mounts }}"
     env:
@@ -30,5 +30,9 @@
       TOKEN: "{{ vault_beszel_agent_token }}"
     networks: "{{ beszel_agent_networks }}"
     network_mode: "{{ beszel_agent_network_mode }}"
+    devices: "{{ beszel_agent_devices }}"
+    capabilities:
+      - SYS_RAWIO # required for S.M.A.R.T. data
+      - SYS_ADMIN # required for NVMe S.M.A.R.T. data
   vars:
     ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"

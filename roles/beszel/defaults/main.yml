@@ -13,3 +13,4 @@ beszel_agent_mounts:
 beszel_agent_combined_mounts: "{{ beszel_agent_default_mounts + beszel_agent_mounts }}"
 beszel_agent_networks:
 beszel_agent_network_mode: "default"
+beszel_agent_devices:
