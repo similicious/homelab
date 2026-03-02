@@ -2,7 +2,6 @@
 
 | Name              | Access       | IAM            | Groups                                  |
 | ----------------- | ------------ | -------------- | --------------------------------------- |
-| 2fauth            | local 🏠     | forwarded-auth | admin                                   |
 | actual-budget     | local 🏠     | internal       | -                                       |
 | adguard-home      | local 🏠     | internal       | -                                       |
 | airsonic-refix    | local 🏠     | forwarded-auth | admin                                   |

@@ -76,9 +76,6 @@
     - role: deezer-downloader
       tags:
         - deezer
-    - role: 2fauth
-      tags:
-        - 2fauth
     - role: homeassistant
       tags:
         - homeassistant

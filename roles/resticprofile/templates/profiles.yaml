@@ -62,9 +62,6 @@ base:
       - /mnt/appdata/docker/lidarr/Backups
       - /mnt/appdata/docker/sabnzbd/sabnzbd.ini
 
-      # 2fauth
-      - /mnt/appdata/docker/2fauth
-
       # vikunja
       - /mnt/appdata/docker/vikunja
 
