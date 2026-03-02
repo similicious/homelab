@@ -1,0 +1,25 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    hostname: "{{ service_name }}"
+    image: codercom/code-server:latest
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.code-server.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.code-server.loadbalancer.server.port: "8080"
+      traefik.docker.network: "traefik"
+      traefik.http.routers.code-server.middlewares: "authelia@docker"
+    volumes:
+      - "{{ code_server_dir }}:/home/coder"
+    user: "{{ docker_container_puid }}:{{ docker_container_pgid }}"
+    networks:
+      - name: "{{ traefik_network_name }}"
+    env:
+      DOCKER_USER: "{{ username }}"
+    command: >
+      --auth none
+      --disable-telemetry
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"

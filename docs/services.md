@@ -12,6 +12,7 @@
 | beets             | local 🏠     | none           | -                                       |
 | beszel            | local 🏠     | oauth          | admin                                   |
 | changedetection   | local 🏠     | forwarded-auth | admin                                   |
+| code-server       | local 🏠     | forwarded-auth | -                                       |
 | copyparty         | local 🏠     | forwarded-auth | limited public access, configured users |
 | dawarich          | local 🏠     | internal       | -                                       |
 | ddns              | local 🏠     | none           | -                                       |
