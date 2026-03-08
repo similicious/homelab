@@ -22,8 +22,8 @@ base:
       # vikunja
       - sqlite3 /mnt/appdata/docker/vikunja/db/vikunja.db ".backup /mnt/appdata/docker/vikunja/db/vikunja.db.bak"
 
-      # jellyseerr
-      - sqlite3 /mnt/appdata/docker/jellyseerr/db/db.sqlite3 ".backup /mnt/appdata/docker/jellyseerr/db/db.sqlite3.bak"
+      # seerr
+      - sqlite3 /mnt/appdata/docker/seerr/db/db.sqlite3 ".backup /mnt/appdata/docker/seerr/db/db.sqlite3.bak"
 
       # dawarich
       - docker exec -t dawarich-db pg_dumpall --clean --if-exists --username=postgres | gzip --rsyncable > "/mnt/appdata/docker/dawarich/backup/dawarich.sql.gz"
@@ -77,8 +77,8 @@ base:
       # lldap
       - /mnt/appdata/docker/lldap
 
-      # jellyseerr
-      - /mnt/appdata/docker/jellyseerr
+      # seerr
+      - /mnt/appdata/docker/seerr
 
       # dawarich
       - /mnt/appdata/docker/dawarich/backup

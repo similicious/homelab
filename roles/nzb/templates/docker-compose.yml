@@ -105,23 +105,30 @@ services:
       - "traefik.http.services.prowlarr.loadbalancer.server.port=9696"
       - "traefik.docker.network={{ traefik_network_name }}"
 
-  jellyseerr:
-    image: ghcr.io/fallenbagel/jellyseerr:latest
-    container_name: jellyseerr
+  seerr:
+    image: ghcr.io/seerr-team/seerr:latest
+    init: true
+    container_name: seerr
     environment:
       - LOG_LEVEL=info
       - TZ=Europe/Berlin
     volumes:
-      - "{{ nzb_jellyseerr_config_dir }}:/app/config"
+      - "{{ nzb_seerr_config_dir }}:/app/config"
     restart: unless-stopped
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.jellyseerr.rule=Host(`jellyseerr.{{ public_domain }}`)"
-      - "traefik.http.services.jellyseerr.loadbalancer.server.port=5055"
+      - "traefik.http.routers.seerr.rule=Host(`jellyseerr.{{ public_domain }}`) || Host(`seerr.{{ public_domain }}`)"
+      - "traefik.http.services.seerr.loadbalancer.server.port=5055"
       - "traefik.docker.network={{ traefik_network_name }}"
     networks:
       - nzb
       - "{{ traefik_network_name }}"
+    healthcheck:
+      test: wget --no-verbose --tries=1 --spider http://localhost:5055/api/v1/status || exit 1
+      start_period: 20s
+      timeout: 3s
+      interval: 15s
+      retries: 3
 
 networks:
   nzb:
