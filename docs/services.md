@@ -26,7 +26,6 @@
 | immich            | local 🏠     | oauth          | admin                                   |
 | jdownloader2      | local 🏠     | forwarded-auth | admin                                   |
 | jellyfin          | public 🌍    | internal, ldap | admin, media                            |
-| jellyseerr        | public 🌍    | via jellyfin   |                                         |
 | kitchen-owl       | public 🌍    | oauth          | home                                    |
 | lldap             | local 🏠     | internal       | -                                       |
 | navidrome         | local 🏠     | forwarded-auth | admin                                   |
@@ -45,6 +44,7 @@
 | scanservjs        | local 🏠     | none           | -                                       |
 | scrutiny          | local 🏠     | none           | -                                       |
 | searxng           | local 🏠     | none           | -                                       |
+| seerr             | public 🌍    | via jellyfin   |                                         |
 | sonarr            | local 🏠     | forwarded-auth | admin                                   |
 | speedtest         | local 🏠     | none           | -                                       |
 | stirling-pdf      | local 🏠     | none           | -                                       |
