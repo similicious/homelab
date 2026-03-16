@@ -18,6 +18,7 @@ services:
       LOGGER_LEVEL: info
       TZ: "Europe/Berlin"
       PLAYWRIGHT_DRIVER_URL: "ws://browser-sockpuppet-chrome:3000"
+      ALLOW_IANA_RESTRICTED_ADDRESSES: "true"
     volumes:
       - "{{ changedetection_dir }}:/datastore"
     depends_on:
