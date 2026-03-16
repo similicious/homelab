@@ -1,23 +1,7 @@
 services:
-  migrate:
-    container_name: streamystats-migrate
-    image: docker.io/fredrikburmester/streamystats-v2-migrate:v2.16.0
-    environment:
-      - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD={{ vault_streamystats_postgres_password }}
-      - POSTGRES_DB=streamystats
-      - PGPASSWORD={{ vault_streamystats_postgres_password }}
-    depends_on:
-      vectorchord:
-        condition: service_healthy
-    restart: "no"
-    networks:
-      - app
-
   nextjs-app:
     container_name: streamystats
-    image: docker.io/fredrikburmester/streamystats-v2-nextjs:v2.16.0
+    image: ghcr.io/fredrikburmester/streamystats-nextjs:v2.18.0
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
@@ -27,8 +11,6 @@ services:
     depends_on:
       vectorchord:
         condition: service_healthy
-      migrate:
-        condition: service_completed_successfully
     restart: unless-stopped
     networks:
       - app
@@ -41,7 +23,7 @@ services:
 
   job-server:
     container_name: streamystats-job-server
-    image: docker.io/fredrikburmester/streamystats-v2-job-server:v2.16.0
+    image: ghcr.io/fredrikburmester/streamystats-job-server:v2.18.0
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
@@ -50,8 +32,6 @@ services:
     depends_on:
       vectorchord:
         condition: service_healthy
-      migrate:
-        condition: service_completed_successfully
     restart: unless-stopped
     networks:
       - app
