@@ -204,6 +204,7 @@ identity_providers:
           - "audiobookshelf://oauth"
           - "plappa://oauth"
           - "lissen://oauth"
+          - "stillapp://oauth"
         scopes:
           - "openid"
           - "profile"
