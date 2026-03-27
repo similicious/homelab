@@ -10,3 +10,4 @@ recipes_app_dir: "{{ recipes_dir }}/app"
 recipes_db_dir: "{{ recipes_dir }}/db"
 
 recipes_app_media_dir: "{{ recipes_app_dir }}/mediafiles"
+recipes_app_staticfiles_dir: "{{ recipes_app_dir }}/staticfiles"
