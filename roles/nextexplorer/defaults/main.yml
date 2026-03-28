@@ -1,0 +1,5 @@
+---
+service_name: "nextexplorer"
+nextexplorer_dir: "{{ docker_container_data_root }}/nextexplorer"
+nextexplorer_cache_dir: "{{ nextexplorer_dir }}/config"
+nextexplorer_config_dir: "{{ nextexplorer_dir }}/data"

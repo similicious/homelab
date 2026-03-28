@@ -253,3 +253,15 @@ identity_providers:
           - "profile"
           - "email"
         authorization_policy: "admin"
+      - client_id: "GJQ5_XtjGNx9SAUhei7aLfXPN2LSZcX6W2LW19ExIREI8ws6QPEwN~wurTsYbSMR7XmU5Wd0"
+        client_name: "nextexplorer"
+        client_secret: "{{ vault_authelia_identity_providers_oidc_clients_nextexplorer_client_client_secret_hash }}"
+        redirect_uris:
+          - "https://explorer.{{ public_domain }}/callback"
+        scopes:
+          - "openid"
+          - "profile"
+          - "email"
+          - "groups"
+        authorization_policy: "admin"
+        pre_configured_consent_duration: "1M"

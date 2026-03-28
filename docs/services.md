@@ -20,7 +20,7 @@
 | feishin           | local 🏠     | forwarded-auth | admin                                   |
 | grist             | local 🏠     | oidc           | admin                                   |
 | health-tracker    | local 🏠     | internal       | -                                       |
-| hibiscus-server   | local 🏠     | internal       | -                                       |
+| hibiscus-server   | local 🏠     | internal       | - s                                     |
 | hibiscus-actual   | local 🏠     | none           | -                                       |
 | homeassistant     | local 🏠     | internal       | -                                       |
 | immich            | local 🏠     | oauth          | admin                                   |
@@ -29,6 +29,7 @@
 | kitchen-owl       | public 🌍    | oauth          | home                                    |
 | lldap             | local 🏠     | internal       | -                                       |
 | navidrome         | local 🏠     | forwarded-auth | admin                                   |
+| nextexplorer      | local 🏠     | oidc           | admin                                   |
 | nextcloud         | public 🌍    | internal       | -                                       |
 | omni-tools        | local 🏠     | none           | -                                       |
 | open-webui        | local 🏠     | oauth          | admin                                   |
