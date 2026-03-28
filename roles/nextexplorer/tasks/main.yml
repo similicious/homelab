@@ -1,0 +1,28 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: nxzai/explorer:latest
+    volumes:
+      - "{{ nextexplorer_config_dir }}:/config"
+      - "{{ nextexplorer_cache_dir }}:/cache"
+      - "{{ storage_media_dir }}:/mnt/media"
+      - "{{ storage_data_dir }}:/mnt/data"
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.explorer.rule: "Host(`explorer.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.explorer.loadbalancer.server.port: "3000"
+    env:
+      NODE_ENV: "production"
+      PUBLIC_URL: "https://explorer.{{ public_domain }}"
+      SESSION_SECRET: "{{ vault_nextexplorer_session_secret }}"
+      OIDC_ENABLED: "true"
+      OIDC_ISSUER: "https://auth.{{ public_domain }}"
+      OIDC_CLIENT_ID: "GJQ5_XtjGNx9SAUhei7aLfXPN2LSZcX6W2LW19ExIREI8ws6QPEwN~wurTsYbSMR7XmU5Wd0"
+      OIDC_CLIENT_SECRET: "{{ vault_authelia_identity_providers_oidc_clients_nextexplorer_client_client_secret }}"
+      OIDC_SCOPES: "openid,profile,email,groups"
+      OIDC_ADMIN_GROUPS: "admin"
+      AUTH_MODE: "oidc"
+    networks:
+      - name: "{{ traefik_network_name }}"
