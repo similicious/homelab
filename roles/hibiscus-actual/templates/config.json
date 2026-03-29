@@ -23,7 +23,7 @@
         {
           "accountId": "bc0b47d9-29d9-4cd1-8e4d-9b680797594e",
           "hibiscusAccountId": 1,
-          "fetchDaysAmount": 32,
+          "fetchDaysAmount": 15,
           "transactionFilters": [
             [
               {
