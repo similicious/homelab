@@ -1,0 +1,13 @@
+---
+- name: Ensure the udpfsd systemd unit file is present
+  ansible.builtin.template:
+    dest: "/etc/systemd/system/{{ udpfsd_service_name }}"
+    src: udpfsd.service
+    mode: "0644"
+
+- name: Force systemd to reload config and start the service
+  ansible.builtin.systemd:
+    name: udpfsd
+    state: started
+    enabled: yes
+    daemon_reload: yes

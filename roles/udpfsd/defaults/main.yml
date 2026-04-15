@@ -1,0 +1,5 @@
+---
+udpfsd_mount_path: "{{ storage_media_dir }}/roms/Sony - PlayStation 2/Share"
+
+udpfsd_bin_path: "/usr/local/bin/udpfsd"
+udpfsd_service_name: "udpfsd.service"

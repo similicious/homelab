@@ -1,0 +1,12 @@
+[Unit]
+Description=UDPFSD Server for PS2
+After=network.target
+
+[Service]
+Type=simple
+ExecStart={{ udpfsd_bin_path }} -fsroot "{{ udpfsd_mount_path }}"
+Restart=always
+User={{ username }}
+
+[Install]
+WantedBy=multi-user.target
