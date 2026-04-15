@@ -2,7 +2,11 @@ services:
   dawarich_redis:
     image: redis:7.4-alpine
     container_name: dawarich-redis
-    command: redis-server
+    command: >
+      redis-server
+      --save 900 1
+      --save 300 10
+      --appendonly no
     networks:
       - app
     volumes:
@@ -53,7 +57,7 @@ services:
     command: ["bin/rails", "server", "-p", "3000", "-b", "::"]
     restart: on-failure
     environment:
-      RAILS_ENV: development
+      RAILS_ENV: production
       REDIS_URL: redis://dawarich_redis:6379
       DATABASE_HOST: dawarich_db
       DATABASE_USERNAME: postgres
@@ -61,13 +65,14 @@ services:
       DATABASE_NAME: dawarich_development
       MIN_MINUTES_SPENT_IN_CITY: 60
       APPLICATION_HOSTS: "dawarich.{{ public_domain }},localhost"
-      TIME_ZONE: Europe/London
+      TIME_ZONE: Europe/Berlin
       APPLICATION_PROTOCOL: http
       PROMETHEUS_EXPORTER_ENABLED: false
       PROMETHEUS_EXPORTER_HOST: 0.0.0.0
       PROMETHEUS_EXPORTER_PORT: 9394
       SELF_HOSTED: "true"
       STORE_GEODATA: "true"
+      SECRET_KEY_BASE: "{{ vault_dawarich_secret_key_base }}"
       # PHOTON_API_HOST: photon.komoot.io
       # PHOTON_API_USE_HTTPS: true # or false if you want to use HTTP instead of HTTPS
     labels:
@@ -114,7 +119,7 @@ services:
     command: ["sidekiq"]
     restart: on-failure
     environment:
-      RAILS_ENV: development
+      RAILS_ENV: production
       REDIS_URL: redis://dawarich_redis:6379
       DATABASE_HOST: dawarich_db
       DATABASE_USERNAME: postgres
@@ -128,6 +133,7 @@ services:
       PROMETHEUS_EXPORTER_PORT: 9394
       SELF_HOSTED: "true"
       STORE_GEODATA: "true"
+      SECRET_KEY_BASE: "{{ vault_dawarich_secret_key_base }}"
       # PHOTON_API_HOST: photon.komoot.io
       # PHOTON_API_USE_HTTPS: true # or false if you want to use HTTP instead of HTTPS
     healthcheck:
