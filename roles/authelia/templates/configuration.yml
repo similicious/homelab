@@ -265,3 +265,15 @@ identity_providers:
           - "groups"
         authorization_policy: "admin"
         pre_configured_consent_duration: "1M"
+      - client_id: "GE7lxIJ.9ZXNZa9yu7xNmUo2nkMwBlH934MQXnqvN-eB3fu-IyNLG0Km"
+        client_name: "dawarich"
+        secret: "{{ vault_authelia_identity_providers_oidc_clients_dawarich_client_client_secret_hash }}"
+        public: false
+        redirect_uris:
+          - https://dawarich.{{ public_domain }}/users/auth/openid_connect/callback
+        scopes:
+          - openid
+          - email
+          - profile
+        authorization_policy: "admin"
+        pre_configured_consent_duration: "1M"
