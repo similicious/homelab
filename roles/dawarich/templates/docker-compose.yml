@@ -78,7 +78,7 @@ services:
       OIDC_CLIENT_SECRET: "{{ vault_authelia_identity_providers_oidc_clients_dawarich_client_client_secret }}"
       OIDC_ISSUER: "https://auth.{{ public_domain }}"
       OIDC_REDIRECT_URI: https://dawarich.{{ public_domain }}/users/auth/openid_connect/callback
-      OIDC_PROVIDER_NAME: "Sign in with Authelia"
+      OIDC_PROVIDER_NAME: "Authelia"
       OIDC_AUTO_REGISTER: "false"
       ALLOW_EMAIL_PASSWORD_REGISTRATION: "false"
       # PHOTON_API_HOST: photon.komoot.io
@@ -146,7 +146,7 @@ services:
       OIDC_CLIENT_SECRET: "{{ vault_authelia_identity_providers_oidc_clients_dawarich_client_client_secret }}"
       OIDC_ISSUER: "https://auth.{{ public_domain }}"
       OIDC_REDIRECT_URI: https://dawarich.{{ public_domain }}/users/auth/openid_connect/callback
-      OIDC_PROVIDER_NAME: "Sign in with Authelia"
+      OIDC_PROVIDER_NAME: "Authelia"
       OIDC_AUTO_REGISTER: "false"
       ALLOW_EMAIL_PASSWORD_REGISTRATION: "false"
       # PHOTON_API_HOST: photon.komoot.io
