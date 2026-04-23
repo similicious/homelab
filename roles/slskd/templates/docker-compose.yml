@@ -1,0 +1,47 @@
+services:
+  slskd:
+    image: slskd/slskd
+    container_name: slskd
+    environment:
+      PUID: "{{ docker_container_puid }}"
+      PGID: "{{ docker_container_pgid }}"
+      SLSKD_REMOTE_CONFIGURATION: "true"
+      SLSKD_DOWNLOADS_DIR: "/downloads/complete"
+      SLSKD_INCOMPLETE_DIR: "/downloads/incomplete"
+      SLSKD_SLSK_USERNAME: "{{ vault_slskd_user }}"
+      SLSKD_SLSK_PASSWORD: "{{ vault_slskd_password }}"
+      SLSKD_NO_AUTH: "true"
+    volumes:
+      - "{{ slskd_dir }}:/app"
+      - "{{ slskd_download_dir }}/complete:/downloads/complete"
+      - "{{ slskd_download_dir }}/incomplete:/downloads/incomplete"
+    restart: unless-stopped
+    network_mode: "container:gluetun-slskd"
+
+  gluetun-slskd:
+    image: qmcgaw/gluetun
+    container_name: gluetun-slskd
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - VPN_SERVICE_PROVIDER=mullvad
+      - VPN_TYPE=wireguard
+      # - grand krill
+      - "WIREGUARD_PRIVATE_KEY={{ vault_gluetun_wireguard_private_key }}"
+      - "WIREGUARD_ADDRESSES={{ vault_gluetun_wireguard_ip }}"
+      - SERVER_CITIES=Berlin
+    volumes:
+      - "{{ gluetun_dir }}:/gluetun"
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.slsdkd.rule=Host(`slsdkd.{{ public_domain }}`) &&
+        {{ traefik_internal_client_ip_v3 }}"
+      - "traefik.http.routers.slsdkd.middlewares=authelia@docker"
+      - "traefik.http.services.slsdkd.loadbalancer.server.port=5030"
+    networks:
+      - traefik
+
+networks:
+  traefik:
+    external: true

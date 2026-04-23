@@ -175,3 +175,6 @@
     - role: nextexplorer
       tags:
         - nextexplorer
+    - role: slskd
+      tags:
+        - slskd
