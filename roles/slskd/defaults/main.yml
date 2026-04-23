@@ -1,0 +1,10 @@
+---
+service_name: slskd
+
+slskd_compose_file: "{{ docker_compose_root }}/{{ service_name }}/docker-compose.yml"
+slskd_compose_dir: "{{ slskd_compose_file | dirname }}"
+
+slskd_dir: "{{ docker_container_data_root }}/{{ service_name }}"
+slskd_download_dir:
+
+gluetun_dir: "{{ docker_container_data_root }}/gluetun"

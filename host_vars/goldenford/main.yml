@@ -110,6 +110,9 @@ jdownloader_download_dir: "{{ storage_media_dir }}/downloads/jdownloader"
 # role: transmission
 transmission_download_dir: "{{ storage_media_dir }}/downloads/torrent"
 
+# role: slskd
+slskd_download_dir: "{{ storage_media_dir }}/downloads/slskd"
+
 # role: adguard
 adguard_rewrites:
   - domain: "{{ vault_public_domain }}"

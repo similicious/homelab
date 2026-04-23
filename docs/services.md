@@ -46,6 +46,7 @@
 | scrutiny          | local 🏠     | none           | -                                       |
 | searxng           | local 🏠     | none           | -                                       |
 | seerr             | public 🌍    | via jellyfin   |                                         |
+| slskd             | local 🏠     | forwarded-auth |                                         |
 | sonarr            | local 🏠     | forwarded-auth | admin                                   |
 | speedtest         | local 🏠     | none           | -                                       |
 | stirling-pdf      | local 🏠     | none           | -                                       |
