@@ -14,7 +14,12 @@ import:
 
 fetchart:
   cover_format: JPEG
-  sources: coverart itunes amazon albumart filesystem
+  sources:
+    - coverart
+    - itunes
+    - amazon
+    - albumart
+    - filesystem
   enforce_ratio: yes
 
 zero:
