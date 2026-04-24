@@ -47,7 +47,7 @@ wireguard_unmanaged_peers:
     public_key: 34k2V+GezcOvJVwNWtxtH+yBUtW9Ay83TSMi+4i5iRo=
     allowed_ips: 10.10.0.2/32
   smartphone:
-    public_key: jHqz4lrMWR04e/7GxA5EvrV20ztKuIeLAUnb00XkLgY=
+    public_key: hBjzz2EmhTyE6cg77vclLMrtoMTtIS2gnb7+hbd7VSc=
     allowed_ips: 10.10.0.3/32
   ipad:
     public_key: ZEzpus8c+2+UNO94LWTH+8a+l3zZdiqE+nztYDuBagQ=
