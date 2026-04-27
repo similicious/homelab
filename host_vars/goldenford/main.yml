@@ -63,7 +63,7 @@ traefik_args: >
   --certificatesresolvers.letsencrypt.acme.storage=/ssl-certs/acme.json
 
 traefik_env:
-  HETZNER_API_KEY: "{{ vault_hetzner_api_key }}"
+  HETZNER_API_TOKEN: "{{ vault_hetzner_api_token }}"
   LEGO_DISABLE_CNAME_SUPPORT: "true"
 
 traefik_labels:
