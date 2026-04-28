@@ -73,6 +73,9 @@ services:
       SELF_HOSTED: "true"
       STORE_GEODATA: "true"
       SECRET_KEY_BASE: "{{ vault_dawarich_secret_key_base }}"
+      OTP_ENCRYPTION_PRIMARY_KEY: "{{  vault_dawarich_otp_encryption_primary_key }}"
+      OTP_ENCRYPTION_DETERMINISTIC_KEY: "{{ vault_dawarich_otp_encryption_deterministic_key }}"
+      OTP_ENCRYPTION_KEY_DERIVATION_SALT: "{{ vault_dawarich_otp_encryption_key_derivation_salt }}"
 
       OIDC_CLIENT_ID: "GE7lxIJ.9ZXNZa9yu7xNmUo2nkMwBlH934MQXnqvN-eB3fu-IyNLG0Km"
       OIDC_CLIENT_SECRET: "{{ vault_authelia_identity_providers_oidc_clients_dawarich_client_client_secret }}"
@@ -142,6 +145,10 @@ services:
       SELF_HOSTED: "true"
       STORE_GEODATA: "true"
       SECRET_KEY_BASE: "{{ vault_dawarich_secret_key_base }}"
+      OTP_ENCRYPTION_PRIMARY_KEY: "{{  vault_dawarich_otp_encryption_primary_key }}"
+      OTP_ENCRYPTION_DETERMINISTIC_KEY: "{{ vault_dawarich_otp_encryption_deterministic_key }}"
+      OTP_ENCRYPTION_KEY_DERIVATION_SALT: "{{ vault_dawarich_otp_encryption_key_derivation_salt }}"
+      
       OIDC_CLIENT_ID: "GE7lxIJ.9ZXNZa9yu7xNmUo2nkMwBlH934MQXnqvN-eB3fu-IyNLG0Km"
       OIDC_CLIENT_SECRET: "{{ vault_authelia_identity_providers_oidc_clients_dawarich_client_client_secret }}"
       OIDC_ISSUER: "https://auth.{{ public_domain }}"
