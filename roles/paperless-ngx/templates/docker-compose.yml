@@ -37,10 +37,14 @@ services:
       PAPERLESS_URL: "https://paperless.{{ public_domain }}"
       PAPERLESS_ENABLE_HTTP_REMOTE_USER: "true"
       PAPERLESS_IGNORE_DATES: "{{ vault_paperless_birthdate }}"
+      PAPERLESS_APPS: "allauth.socialaccount.providers.openid_connect"
+      PAPERLESS_SOCIALACCOUNT_PROVIDERS: '{ "openid_connect": { "SERVERS": [ { "id": "authelia", "name": "Authelia", "server_url": "https://auth.{{ public_domain }}/.well-known/openid-configuration", "token_auth_method": "client_secret_basic", "APP": { "client_id": "ojkA2sirWaqVCtHoJxCFTGxJvUdXCI6iKql3SK4EfB6hgxvmTEz6p5VkvMXNyLNYkNcj4~Po", "secret": "{{ vault_authelia_identity_providers_oidc_clients_paperless_client_client_secret }}" } } ] } }'
+      PAPERLESS_SOCIALACCOUNT_ALLOW_SIGNUPS: "false"
+      PAPERLESS_DISABLE_REGULAR_LOGIN: "true"
+      PAPERLESS_REDIRECT_LOGIN_TO_SSO: "true"
     labels:
       traefik.enable: "true"
       traefik.http.routers.paperless.rule: "Host(`paperless.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
-      traefik.http.routers.paperless.middlewares: "authelia@docker"
       traefik.docker.network: "{{ traefik_network_name }}"
     networks:
       - app
