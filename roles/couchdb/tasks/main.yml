@@ -1,0 +1,28 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: couchdb:latest
+    volumes:
+      - "{{ couchdb_data_dir }}:/opt/couchdb/data"
+      - "{{ couchdb_config_dir }}:/opt/couchdb/etc/local.d"
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.couchdb.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.couchdb.loadbalancer.server.port: "5984"
+      traefik.http.routers.couchdb.middlewares: obsidiancors
+
+      traefik.http.middlewares.obsidiancors.headers.accesscontrolallowmethods: "GET,PUT,POST,HEAD,DELETE"
+      traefik.http.middlewares.obsidiancors.headers.accesscontrolallowheaders: "accept,authorization,content-type,origin,referer"
+      traefik.http.middlewares.obsidiancors.headers.accesscontrolalloworiginlist: "app://obsidian.md,capacitor://localhost,http://localhost"
+      traefik.http.middlewares.obsidiancors.headers.accesscontrolmaxage: "3600"
+      traefik.http.middlewares.obsidiancors.headers.addvaryheader: "true"
+      traefik.http.middlewares.obsidiancors.headers.accessControlAllowCredentials: "true"
+    networks:
+      - name: "{{ traefik_network_name }}"
+    env:
+      COUCHDB_USER: "{{ vault_couchdb_user }}"
+      COUCHDB_PASSWORD: "{{ vault_couchdb_password }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
