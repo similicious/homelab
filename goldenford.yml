@@ -178,3 +178,6 @@
     - role: slskd
       tags:
         - slskd
+    - role: couchdb
+      tags:
+        - couchdb
