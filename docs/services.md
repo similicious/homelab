@@ -35,7 +35,7 @@
 | omni-tools        | local 🏠     | none           | -                                       |
 | open-webui        | local 🏠     | oauth          | admin                                   |
 | packlist          | local 🏠     | internal       | -                                       |
-| paperless-ngx     | local 🏠     | forwarded-auth | admin                                   |
+| paperless-ngx     | local 🏠     | oidc           | admin                                   |
 | portainer         | local 🏠     | oauth          | admin                                   |
 | prowlarr          | local 🏠     | forwarded-auth | admin                                   |
 | radarr            | local 🏠     | forwarded-auth | admin                                   |

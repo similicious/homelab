@@ -38,10 +38,6 @@ access_control:
       resources:
         - '^\/scene\/\d+\/screenshot\?t=\d+'
         - '^\/scene\/\d+\/stream'
-    - domain: "paperless.{{ public_domain }}"
-      policy: bypass
-      resources:
-        - "^/api.*"
     - domain: "copyparty.{{ public_domain }}"
       policy: bypass
     - domain: "*.{{ public_domain }}"
@@ -275,5 +271,17 @@ identity_providers:
           - openid
           - email
           - profile
+        authorization_policy: "admin"
+        pre_configured_consent_duration: "1M"
+      - client_id: "ojkA2sirWaqVCtHoJxCFTGxJvUdXCI6iKql3SK4EfB6hgxvmTEz6p5VkvMXNyLNYkNcj4~Po"
+        client_name: "paperless-ngx"
+        client_secret: "{{ vault_authelia_identity_providers_oidc_clients_paperless_client_client_secret_hash }}"
+        redirect_uris:
+          - "https://paperless.{{ public_domain }}/accounts/oidc/authelia/login/callback/"
+        scopes:
+          - "openid"
+          - "profile"
+          - "groups"
+          - "email"
         authorization_policy: "admin"
         pre_configured_consent_duration: "1M"
