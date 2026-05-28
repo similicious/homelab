@@ -9,7 +9,13 @@ services:
       - "{{ rest_server_data_dir }}:/data"
     restart: unless-stopped
     network_mode: service:tailscale-rest-server
-
+    healthcheck:
+          test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:8000/metrics"]
+          interval: 30s
+          timeout: 5s
+          retries: 3
+          start_period: 10s
+          
   tailscale-rest-server:
     image: tailscale/tailscale:latest
     hostname: rest-server-simon
