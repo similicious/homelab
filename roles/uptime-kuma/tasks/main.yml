@@ -3,13 +3,12 @@
   community.docker.docker_container:
     name: "{{ service_name }}"
     restart_policy: unless-stopped
-    image: louislam/uptime-kuma
+    image: louislam/uptime-kuma:2
     volumes:
       - "{{ uptime_kuma_data_dir }}:/app/data"
     network_mode: "host"
   vars:
     ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
-
 - name: "Ensure the initial setup is completed with preset password"
   lucasheld.uptime_kuma.setup:
     api_url: "{{ uptime_kuma_api_url }}"
