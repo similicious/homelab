@@ -7,6 +7,7 @@
 | airsonic-refix    | local 🏠     | forwarded-auth | admin                                   |
 | audiobookshelf    | public 🌍    | oidc           | media, admin / user (account creation)  |
 | authelia          | public 🌍    | auth provider  | -                                       |
+| baikal            | local 🏠     | internal       | -                                       |
 | bazarr            | local 🏠     | forwarded-auth | admin                                   |
 | beets             | local 🏠     | none           | -                                       |
 | beszel            | local 🏠     | oauth          | admin                                   |
