@@ -1,0 +1,18 @@
+---
+- name: "Ensure {{ service_name }} is running as a docker container"
+  community.docker.docker_container:
+    name: "{{ service_name }}"
+    image: ghcr.io/aalmenar/baikal:nginx
+    volumes:
+      - "{{ baikal_config_dir }}:/var/www/baikal/config"
+      - "{{ baikal_data_dir }}:/var/www/baikal/Specific"
+    restart_policy: unless-stopped
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.baikal.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      traefik.http.services.baikal.loadbalancer.server.port: "80"
+      traefik.docker.network: "{{ traefik_network_name }}"
+    networks:
+      - name: "{{ traefik_network_name }}"
+  vars:
+    ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"

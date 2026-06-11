@@ -1,0 +1,6 @@
+---
+service_name: "baikal"
+baikal_dir: "{{ docker_container_data_root }}/{{ service_name }}"
+
+baikal_config_dir: "{{ baikal_dir }}/config"
+baikal_data_dir: "{{ baikal_dir }}/data"

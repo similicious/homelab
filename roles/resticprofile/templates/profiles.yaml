@@ -30,6 +30,9 @@ base:
 
       # immich
       - docker exec -t immich-postgres pg_dumpall --clean --if-exists --username=postgres | gzip --rsyncable > "/mnt/appdata/docker/immich/db-backup/dump.sql.gz"
+
+      # baikal
+      - sqlite3 /mnt/appdata/docker/baikal/data/db/db.sqlite ".backup /mnt/appdata/docker/baikal/db.sqlite.bak"
     source:
       # Data
       - /mnt/storage/data
@@ -92,6 +95,10 @@ base:
 
       # grist
       - /mnt/appdata/docker/grist
+
+      # baikal
+      - /mnt/appdata/docker/baikal/db.sqlite.bak
+      - /mnt/appdata/docker/baikal/config
 
     exclude:
       # General

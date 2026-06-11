@@ -181,3 +181,6 @@
     - role: couchdb
       tags:
         - couchdb
+    - role: baikal
+      tags:
+        - baikal
