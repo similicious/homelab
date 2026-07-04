@@ -57,7 +57,7 @@ services:
 
   redis:
     container_name: immich-redis
-    image: docker.io/valkey/valkey:9@sha256:fb8d272e529ea567b9bf1302245796f21a2672b8368ca3fcb938ac334e613c8f
+    image: docker.io/valkey/valkey:9@sha256:4963247afc4cd33c7d3b2d2816b9f7f8eeebab148d29056c2ca4d7cbc966f2d9
     healthcheck:
       test: redis-cli ping || exit 1
     restart: unless-stopped
@@ -99,6 +99,7 @@ services:
       CHUNKED_UPLOADS_ENABLED: "false" # enable chunked uploads
       CHUNK_SIZE_MB: "95" # per-chunk size (MB)
       SESSION_SECRET: "{{ vault_immich_drop_session_secret }}"
+      LOG_LEVEL: DEBUG
     labels:
       traefik.enable: "true"
       traefik.http.routers.immichdrop.rule: "Host(`drop.{{ public_domain }}`)"
