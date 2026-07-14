@@ -6,7 +6,7 @@
     image: stashapp/stash:latest
     volumes:
       - /etc/localtime:/etc/localtime:ro
-      - "{{ stash_config_dir }}:/root/.stash"
+      - "{{ stash_config_dir }}:/config"
       - "{{ stash_media_dir }}:/data"
     restart_policy: unless-stopped
     labels:
@@ -19,5 +19,10 @@
       - /dev/dri/card1:/dev/dri/card0
     networks:
       - name: "{{ traefik_network_name }}"
+    env:
+      USER: "stash"
+      STASH_CONFIG_FILE: "/config/config.yml"
+    user: "{{ docker_container_puid }}:{{ docker_container_pgid }}"
+
   vars:
     ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
