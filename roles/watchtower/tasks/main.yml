@@ -2,7 +2,7 @@
 - name: "Ensure {{ service_name }} is running as a container"
   community.docker.docker_container:
     name: "{{ service_name }}"
-    image: nickfedor/watchtower
+    image: ghcr.io/nicholas-fedor/watchtower:latest
     volumes: "{{ watchtower_mounts }}"
     command: --interval 28800 --cleanup --no-startup-message
     restart_policy: unless-stopped
