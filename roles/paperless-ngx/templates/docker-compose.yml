@@ -1,7 +1,7 @@
 services:
   broker:
     container_name: "{{ service_name }}-broker"
-    image: docker.io/library/redis:8
+    image: docker.io/valkey/valkey:9-alpine
     restart: unless-stopped
     volumes:
       - "{{ paperless_redis_data_dir }}:/data"
@@ -26,7 +26,10 @@ services:
       - "{{ paperless_app_consume_dir }}/:/usr/src/paperless/consume"
     environment:
       COMPOSE_PROJECT_NAME: "{{ service_name }}"
+      PAPERLESS_SECRET_KEY: "{{ vault_paperless_secret_key }}"
+      PAPERLESS_TRUSTED_PROXIES: "172.18.0.0/16"
       PAPERLESS_REDIS: redis://broker:6379
+      PAPERLESS_DBENGINE: "postgresql"
       PAPERLESS_DBHOST: db
       PAPERLESS_DBUSER: paperless
       PAPERLESS_DBPASS: "{{ vault_postgres_password }}"
