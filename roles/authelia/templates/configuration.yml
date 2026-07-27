@@ -40,6 +40,13 @@ access_control:
         - '^\/scene\/\d+\/stream'
     - domain: "copyparty.{{ public_domain }}"
       policy: bypass
+      networks:
+        - "10.4.20.0/24"
+        - "10.10.0.0/24"
+    - domain: "copyparty.{{ public_domain }}"
+      policy: bypass
+      resources:
+        - '^\/shares\/.+'
     - domain: "*.{{ public_domain }}"
       subject: "group:admin"
       policy: two_factor
