@@ -8,7 +8,7 @@
     restart_policy: unless-stopped
     labels:
       traefik.enable: "true"
-      traefik.http.routers.kitchenowl.rule: "Host(`{{ service_name }}.{{ public_domain }}`)"
+      traefik.http.routers.kitchenowl.rule: "Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
       traefik.http.services.kitchenowl.loadbalancer.server.port: "8080"
     networks:
       - name: "{{ traefik_network_name }}"
