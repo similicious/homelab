@@ -13,7 +13,7 @@ services:
       - "{{ traefik_network_name }}"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.recipes.rule=Host(`{{ service_name }}.{{ public_domain }}`)"
+      - "traefik.http.routers.recipes.rule=Host(`{{ service_name }}.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
       - "traefik.docker.network={{ traefik_network_name }}"
 
   db:

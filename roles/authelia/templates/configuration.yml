@@ -95,11 +95,6 @@ identity_providers:
           - policy: "one_factor"
             subject:
               - "user:similicious.rebuy"
-      home:
-        default_policy: "deny"
-        rules:
-          - policy: "one_factor"
-            subject: "group:home"
       media:
         default_policy: "deny"
         rules:
@@ -179,7 +174,7 @@ identity_providers:
         client_name: KitchenOwl
         client_secret: "{{ vault_authelia_identity_providers_oidc_clients_kitchenowl_client_secret_hash }}"
         public: false
-        authorization_policy: home
+        authorization_policy: admin
         audience: []
         scopes:
           - openid
@@ -217,7 +212,7 @@ identity_providers:
           - "profile"
           - "groups"
           - "email"
-        authorization_policy: "home"
+        authorization_policy: "admin"
       - client_id: "26Nxn_L8gC3b5bPMBELr_aQev0EN4DA0B-T9FLaH5AeQWv"
         client_name: "Immich"
         client_secret: "{{ vault_authelia_identity_providers_oidc_clients_immich_client_secret_hash }}"
