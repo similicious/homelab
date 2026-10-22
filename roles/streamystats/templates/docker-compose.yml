@@ -1,7 +1,7 @@
 services:
   nextjs-app:
     container_name: streamystats
-    image: ghcr.io/fredrikburmester/streamystats-nextjs:v2.18.1
+    image: ghcr.io/fredrikburmester/streamystats-nextjs:v2.20.0
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
@@ -23,7 +23,7 @@ services:
 
   job-server:
     container_name: streamystats-job-server
-    image: ghcr.io/fredrikburmester/streamystats-job-server:v2.18.1
+    image: ghcr.io/fredrikburmester/streamystats-job-server:v2.20.0
     environment:
       - NODE_ENV=production
       - DATABASE_URL=postgresql://postgres:{{ vault_streamystats_postgres_password }}@vectorchord:5432/streamystats
