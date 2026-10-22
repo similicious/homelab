@@ -4,7 +4,7 @@
     name: "{{ service_name }}"
     image: ghcr.io/nicholas-fedor/watchtower:latest
     volumes: "{{ watchtower_mounts }}"
-    command: --interval 28800 --cleanup --no-startup-message
+    command: --interval 28800 --cleanup --debug
     restart_policy: unless-stopped
   vars:
     ansible_python_interpreter: "{{ ansible_docker_venv_bin }}"
