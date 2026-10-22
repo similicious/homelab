@@ -4,10 +4,6 @@ version: "1"
 base:
   backup:
     run-before:
-      # Nextcloud db
-      - docker exec nextcloud-db pg_dump -U nextcloud nextcloud > /mnt/appdata/docker/nextcloud/backup/nextcloud-db.sql
-      - docker exec nextcloud-db pg_dumpall -U nextcloud --globals-only > /mnt/appdata/docker/nextcloud/backup/nextcloud-db-globals.sql
-
       # Paperless-ngx
       - docker exec paperless-ngx-db pg_dump -U paperless paperless > /mnt/appdata/docker/paperless-ngx/backup/paperless.sql
       - docker exec paperless-ngx-db pg_dumpall -U paperless --globals-only > /mnt/appdata/docker/paperless-ngx/backup/paperless-postgres-globals.sql
