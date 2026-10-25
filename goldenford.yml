@@ -136,9 +136,6 @@
     - role: dawarich
       tags:
         - dawarich
-    - role: tdarr
-      tags:
-        - tdarr
     - role: copyparty
       tags:
         - copyparty
