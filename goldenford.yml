@@ -172,9 +172,7 @@
     - role: code-server
       tags:
         - code-server
-    - role: nextexplorer
-      tags:
-        - nextexplorer
+
     - role: slskd
       tags:
         - slskd
