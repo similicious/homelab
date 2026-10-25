@@ -31,7 +31,6 @@
 | kitchen-owl       | public 🌍    | oauth          | home                                    |
 | lldap             | local 🏠     | internal       | -                                       |
 | navidrome         | local 🏠     | forwarded-auth | admin                                   |
-| nextexplorer      | local 🏠     | oidc           | admin                                   |
 | nextcloud         | public 🌍    | internal       | -                                       |
 | omni-tools        | local 🏠     | none           | -                                       |
 | open-webui        | local 🏠     | oauth          | admin                                   |
