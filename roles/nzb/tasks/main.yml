@@ -13,6 +13,7 @@
     - "{{ nzb_bazarr_config_dir }}"
     - "{{ nzb_prowlarr_config_dir }}"
     - "{{ nzb_lidarr_config_dir }}"
+    - "{{ nzb_maintainerr_config_dir }}"
 
 - name: Ensure the docker-compose file is present
   ansible.builtin.template:

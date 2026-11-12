@@ -30,6 +30,7 @@
 | jellyfin          | public 🌍    | internal, ldap | admin, media                            |
 | kitchen-owl       | public 🌍    | oauth          | home                                    |
 | lldap             | local 🏠     | internal       | -                                       |
+| maintainarr       | local 🏠     | forwarded-auth | admin                                   |
 | navidrome         | local 🏠     | forwarded-auth | admin                                   |
 | nextcloud         | public 🌍    | internal       | -                                       |
 | omni-tools        | local 🏠     | none           | -                                       |

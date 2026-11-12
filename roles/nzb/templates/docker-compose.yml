@@ -130,6 +130,25 @@ services:
       interval: 15s
       retries: 3
 
+  maintainerr:
+    container_name: maintainerr
+    image: ghcr.io/maintainerr/maintainerr:latest
+    user: "{{ docker_container_puid }}:{{ docker_container_pgid }}"
+    volumes:
+      - "{{ nzb_maintainerr_config_dir }}:/opt/data"
+    environment:
+      - TZ=Europe/Berlin
+    restart: unless-stopped
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.maintainerr.rule=Host(`maintainerr.{{ public_domain }}`) && {{ traefik_internal_client_ip_v3 }}"
+      - "traefik.http.routers.maintainerr.middlewares=authelia@docker"
+      - "traefik.http.services.maintainerr.loadbalancer.server.port=6246"
+      - "traefik.docker.network={{ traefik_network_name }}"
+    networks:
+      - nzb
+      - "{{ traefik_network_name }}"
+
 networks:
   nzb:
   traefik:

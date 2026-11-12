@@ -19,3 +19,5 @@ nzb_lidarr_config_dir: "{{ docker_container_data_root }}/lidarr"
 nzb_prowlarr_config_dir: "{{ docker_container_data_root }}/prowlarr"
 
 nzb_seerr_config_dir: "{{ docker_container_data_root }}/seerr"
+
+nzb_maintainerr_config_dir: "{{ docker_container_data_root }}/maintainerr"
