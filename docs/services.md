@@ -16,6 +16,7 @@
 | couchdb           | local 🏠     | internal       | -                                       |
 | copyparty         | local 🏠     | forwarded-auth | limited public access, configured users |
 | dawarich          | local 🏠     | internal       | -                                       |
+| dockhand          | local 🏠     | forwarded-auth | -                                       |
 | ddns              | local 🏠     | none           | -                                       |
 | deemix            | local 🏠     | forwarded-auth | admin                                   |
 | deezer-downloader | local 🏠     | forwarded-auth | admin                                   |
